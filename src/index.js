@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 import style from './scss/app.scss'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import Dashboard from './components/dashboard'
+import Login from './components/login'
+
+
+
 
 class App extends React.Component {
     
@@ -15,6 +19,7 @@ class App extends React.Component {
         return(
             <Router>
                 <div class="app" style={style}>
+                    <Route exact path="/" component={Login} />
                     <Route path="/dashboard" component={Dashboard} />
                 </div>
             </Router>
