@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import style from './scss/app.scss'
+import {BrowserRouter as Router, Route, Link} from "react-router-dom"
+import Dashboard from './components/dashboard'
 
 class App extends React.Component {
     
@@ -11,10 +13,11 @@ class App extends React.Component {
 
     render() {
         return(
-
-            <div class="app" style={style}>
-                <p>test</p>
-            </div>
+            <Router>
+                <div class="app" style={style}>
+                    <Route path="/dashboard" component={Dashboard} />
+                </div>
+            </Router>
         )
     }
 }
