@@ -9,10 +9,8 @@ export default class Login extends React.Component {
 
             <div class="login" style={style}>
                 <p>The Recommendator</p>
-                <Link to ="/dashboard">Dashboard</Link>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Link to="/dashboard">Dashboard</Link>
             </div>
         )
     }
 }
-ReactDOM.render(<Login/>, document.querySelector('#root'));
