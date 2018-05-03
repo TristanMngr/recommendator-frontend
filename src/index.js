@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
+import style from './scss/app.scss'
 
 class App extends React.Component {
     
@@ -12,8 +12,8 @@ class App extends React.Component {
     render() {
         return(
 
-            <div class="app">
-
+            <div class="app" style={style}>
+                <p>test</p>
             </div>
         )
     }
