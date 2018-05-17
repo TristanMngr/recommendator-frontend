@@ -1,0 +1,63 @@
+:local(.component) {
+    $time: 0.2s;
+    align-self: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    $padding_left: 60px;
+    .slide-up {
+        height: 5px;
+        position: absolute;
+        bottom: 0;
+        background-color: #a4a4a4;
+        width: 0;
+        transition: all ease-in 0.05s;
+        transition-delay: $time
+    }
+
+    &.active .slide-up{
+        width: 100%;
+    }
+    &.active.completed .slide-up {
+        background-color: #4ab55f;
+    }
+    input {
+        background-color: #1e2329;
+        border: none;
+        outline: none;
+        color: white;
+        height: 60px;
+        font-size: 1.2em;
+        width: 90vw;
+        max-width: 600px;
+        padding-left: $padding_left;
+        transition: all ease-in-out $time;
+        &.active {
+            background-color: white;
+            color: #1e2329;
+        }
+    }
+
+    label {
+        position: absolute;
+        font-size: 1.2em;
+        transition: all ease-out $time;
+        left: $padding_left;
+        &.active {
+            transform: translateY(-50px);
+            font-size: 1em;
+            text-transform: uppercase;
+            left: 5px;
+            font-weight: 300;
+            color: #b3b3b3;
+        }
+        color: #949494;
+    }
+
+    .icon {
+        width: 20px;
+        position: absolute;
+        left: $padding_left - 40px;
+    }
+}

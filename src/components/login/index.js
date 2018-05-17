@@ -1,41 +1,87 @@
 import React from 'react'
-import style from './login_style.scss'
-import {BrowserRouter as Router, Route, Link} from "react-router-dom"
-import LBTransformer from "../../img/Black_transformer.png";
-import RBTransformer from "../../img/right_Black_transformer.png";
-import Logo from "../../img/White_transformer.png";
+import AnimatedInput from './input'
+import style from './style.scss'
+import user_icon from './user.svg'
+import password_icon from './lock.svg'
+import { loginUser } from '../../actions/login';
+import { connect } from 'react-redux'
+import history from '../../history'
+import {withRouter, Redirect} from 'react-router-dom'
 
+class Login extends React.Component {
 
-export default class Login extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: "",
+            password: ""
+        }
+    }
+
+    updateEmail(email) {
+        this.setState({email})
+    }
+
+    updatePassword(password) {
+        this.setState({password})
+    }
+
+    async formSubmit(e) {
+        if (e.which === 13) {
+            e.preventDefault()
+            this.props.auth({username: this.state.email, password: this.state.password})
+        }
+    }
     render() {
-        return(
-            <div class="login" style={style}>
-
-                <div class="space_between">
-                    <img class="side" src={LBTransformer} />
-
-                    <div class="down">
-                        <div id="center">
-                            <img class ="weight" src={Logo} />
-                        </div>
-
-                        <div class="space">
-                            <p id="center" class="title">THE RECOMMENDATOR</p>
-                        </div>
-
-                        <form class="column">
-                            <label id="center" class="down">
-                                <input class="input" type="text" name="email" placeholder="E-mail"/>
-                            </label>
-                            <label id="center" class="space">
-                                <input class="input" type="text" name="password" placeholder="Password"/>
-                            </label>
-                            <input id="down" class ="button" type="submit" value="Se connecter" />
-                        </form>
-                    </div>
-                    <img class="side" src={RBTransformer} />
-                </div>
+        const error = this.props.error ? <div>{this.props.error}</div> : ""
+        const loader_div = (
+            <div className="loader">
+                <p>Loading...</p>
             </div>
+        )
+        const loader = this.props.isFetching ? loader_div : ""
+        let component
+        if  (this.props.isAuthenticated) {
+            //history.push('/dashboard')
+            component = <Redirect to="/dashboard"/>
+        }
+        else {
+            component = (
+        <div className={style.component}>
+        <h1>The Recommendator</h1>
+        {loader}
+        {error}
+        <form onKeyPress={this.formSubmit.bind(this)} className="login-form" onSubmit={this.formSubmit}>
+            <AnimatedInput name="username" text="Username" icon={user_icon} value_callback={this.updateEmail.bind(this)}/>
+            <AnimatedInput name="password" text="Password" icon={password_icon} password value_callback={this.updatePassword.bind(this)} />
+            <button onClick={this.formSubmit.bind(this)} className="submit">LOGIN</button>
+        </form>
+        </div> )
+        }
+
+        return(
+
+                component
+            
             )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+        isFetching: state.auth.isFetching,
+        user: state.auth.user,
+        error: state.auth.error
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        auth: credentials => {
+            dispatch(loginUser(credentials))
+        }
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
