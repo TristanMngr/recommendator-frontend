@@ -11,21 +11,21 @@ import Reducer from './reducers/combine'
 import history from './history'
 import PrivateRoute from './privateroutes'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import Test from './test'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
 
 
 class App extends React.Component {
-    
+
     constructor() {
         super();
-
     }
 
 
     render() {
-        
+
         return(
             <Provider store={store}>
                 <Router history={history}>
@@ -36,6 +36,7 @@ class App extends React.Component {
                             <Switch location={location}>
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
+                                    <Route path="/test_page" component={Test}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
