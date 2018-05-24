@@ -18,7 +18,7 @@ export default class SpecialityElement extends React.Component {
 
     render() {
 
-        const nb_concepts = this.props.matching_modules.length > 0 ?
+        const button = this.props.matching_modules.length > 0 ?
             <div className={"see-matching"} onClick={this.toggle.bind(this)}>
                 <span className="button">voir le matching</span>
             </div> :
@@ -47,7 +47,7 @@ export default class SpecialityElement extends React.Component {
                     <div className="matching">{this.props.matching}%</div>
                 </div>
                 <div className="middle">
-                    {nb_concepts}
+                    {button}
                 </div>
                 {details}
                 <div className="down">
