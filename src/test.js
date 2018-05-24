@@ -9,70 +9,76 @@ export default class Test extends React.Component {
         // data received from the backend should look like this when hitting the form getting spés from concepts
         const test_list = [
             {
-                speciality: {
-                    speciality_id: 1,
-                    name: "spéciality 1 this is a test"
+                "speciality": {
+                    "name": "Ingenieur Logiciel",
+                    "description": "...",
+                    "id": 1
                 },
-                matching_concepts: [
+                "matching_modules": [
                     {
-                        concept: {
-                            concept_id: 2,
-                            name: "concept 2"
+                        "module": {
+                            "name": "Algorithmique et Programmation Avancée",
+                            "description": "...",
+                            "id": 1
                         },
-                        in_modules: [
+                        "matching_concepts": [
                             {
-                                module_id: 1,
-                                name: "module 1"
+                                "name": "Programmation orientée objet",
+                                "id": 1
                             },
                             {
-                                module_id: 2,
-                                name: "module 2"
+                                "name": "Java",
+                                "id": 4
                             }
                         ]
                     },
                     {
-                        concept: {
-                            concept_id: 4,
-                            name: "concept 4"
+                        "module": {
+                          "name": "Genie Logiciel",
+                          "description": "...",
+                          "id": 2
                         },
-                        in_modules: [
-                            {
-                                module_id: 1,
-                                name: "module 1"
-                            }
+                        "matching_concepts": [
+                          {
+                            "name": "Java",
+                            "id": 4
+                          }
                         ]
                     }
                 ],
-                matching: 90
+                "matching": 100
             },
             {
-                speciality: {
-                    speciality_id: 2,
-                    name: "spé 2"
+                "speciality": {
+                    "name": "Business Intelligence",
+                    "description": "saleeut",
+                    "id": 2
                 },
-                matching_concepts: [
+                "matching_modules": [
                     {
-                        concept: {
-                            concept_id: 2,
-                            name: "concept 2"
+                        "module": {
+                            "name": "Genie Logiciel",
+                            "description": "...",
+                            "id": 2
                         },
-                        in_modules: [
+                        "matching_concepts": [
                             {
-                                module_id: 2,
-                                name: "module 2"
+                                "name": "Java",
+                                "id": 4
                             }
                         ]
                     }
                 ],
-                matching: 60
+                "matching": 50
             },
             {
-                speciality: {
-                    speciality_id: 3,
-                    name: "spé 3"
+                "speciality": {
+                    "name": "Microsystème embarqués",
+                    "description": "...",
+                    "id": 3
                 },
-                matching_concepts: [],
-                matching: 0
+                "matching_modules": [],
+                "matching": 0
             }
         ];
 

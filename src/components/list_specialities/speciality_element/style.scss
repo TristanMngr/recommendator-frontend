@@ -26,16 +26,21 @@
     .middle {
         display:flex;
         margin-top: $padding;
-        .nb-concepts {
+        .see-matching {
+            display:inline-flex;
             flex:8;
             font-size: $small-font;
             color: $grey;
-            &.link {
+            .button {
+                border: solid 1px $green;
+                padding: 5px;
                 cursor: pointer;
                 color: $green;
+                border-color: $green;
             }
-            &.link:hover {
+            .button:hover {
                 color: green;
+                border-color: green;
             }
         }
     }
@@ -43,15 +48,11 @@
     .details {
         margin-top: 10px;
         font-size: $small-font;
-        .concept {
-            color: $green;
-        }
-
         color: $grey;
     }
 
     .down {
-        margin-top: 7px;
+        margin-top: $padding;
         .progress-bar {
             width: 100%;
             -webkit-appearance: none;

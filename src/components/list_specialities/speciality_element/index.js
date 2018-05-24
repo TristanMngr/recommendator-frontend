@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './style.scss'
-import ConceptIn from './concept_in'
+import ListModules from './list_modules'
 
 export default class SpecialityElement extends React.Component {
     constructor(props) {
@@ -18,22 +18,22 @@ export default class SpecialityElement extends React.Component {
 
     render() {
 
-        const nb_concepts = this.props.matching_concepts.length > 0 ?
-            // TODO add icon (chevron down par ex) pour montrer cliquable qd true
-            <div className={"nb-concepts link"} onClick={this.toggle.bind(this)}>
-                {this.props.matching_concepts.length} concepts trouvés
+        const nb_concepts = this.props.matching_modules.length > 0 ?
+            <div className={"see-matching"} onClick={this.toggle.bind(this)}>
+                <span className="button">voir le matching</span>
             </div> :
-            <div className={"nb-concepts"}>{this.props.matching_concepts.length} concepts trouvés</div>
+            <div className={"see-matching"}>
+                pas de matching
+            </div>
 
 
         const details = this.state.show_details ?
             <div className="details">
                 {
-                    this.props.matching_concepts.map(
+                    this.props.matching_modules.map(
                         (elem, i) => {
                             return (
-
-                                <ConceptIn key={i} concept={elem.concept} in_modules={elem.in_modules} />
+                                <ListModules key={i} module={elem.module} matching_concepts={elem.matching_concepts} />
                             )
                         }
                     )

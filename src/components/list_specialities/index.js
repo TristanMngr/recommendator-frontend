@@ -11,7 +11,7 @@ export default class ListSpecialities extends React.Component {
         const specialities = this.props.specialities.map(
                 (spe, i) => {
                     return (
-                        <SpecialityElement key={i} name={spe.speciality.name} matching={spe.matching} matching_concepts={spe.matching_concepts} />
+                        <SpecialityElement key={i} name={spe.speciality.name} matching={spe.matching} matching_modules={spe.matching_modules} />
                     )
                 }
             );
