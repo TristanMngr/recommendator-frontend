@@ -4,6 +4,7 @@ import style from './scss/app.scss'
 import {Switch, Router, Route} from "react-router-dom"
 import Dashboard from './components/dashboard'
 import Login from './components/login'
+import Speciality from './components/speciality'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -17,7 +18,7 @@ const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddlew
 
 
 class App extends React.Component {
-    
+
     constructor() {
         super();
 
@@ -25,7 +26,7 @@ class App extends React.Component {
 
 
     render() {
-        
+
         return(
             <Provider store={store}>
                 <Router history={history}>
@@ -36,6 +37,7 @@ class App extends React.Component {
                             <Switch location={location}>
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
+                                    <Route path="/admin/speciality/:id" component={Speciality}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
