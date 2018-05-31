@@ -4,7 +4,8 @@ import style from './scss/app.scss'
 import {Switch, Router, Route} from "react-router-dom"
 import Dashboard from './components/dashboard'
 import Login from './components/login'
-import Speciality from './components/speciality'
+import Speciality from './components/admin/speciality'
+import Module from './components/admin/module'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -26,7 +27,7 @@ class App extends React.Component {
 
 
     render() {
-
+        // TODO les routes /admin les rendre accessible juste pour les admins <AdminRoute>
         return(
             <Provider store={store}>
                 <Router history={history}>
@@ -38,6 +39,7 @@ class App extends React.Component {
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
                                     <Route path="/admin/speciality/:id" component={Speciality}/>
+                                    <Route path="/admin/module/:id" component={Module}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

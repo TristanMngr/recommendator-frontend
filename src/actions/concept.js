@@ -33,6 +33,7 @@ export function getConcepts() {
         const json = await response.json()
         if (response.ok) {
             console.log(json)
+            dispatch(receiveConcepts(json))
         }
         else {
             dispatch(errorConcepts(json.message))
