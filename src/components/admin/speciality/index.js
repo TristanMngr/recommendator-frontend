@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './style.scss'
+import style from '../style.scss'
 import { getSpeciality } from '../../../actions/speciality';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'

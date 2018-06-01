@@ -1,0 +1,38 @@
+:local(.component) {
+    $padding: 10px;
+
+    ul {
+        background: #1e2329;
+    }
+
+    li {
+        padding: $padding;
+        .name {
+            flex: 1;
+        }
+        .description {
+            flex:3;
+            color: #b3b3b3;
+        }
+    }
+
+    .line {
+        display: flex;
+        justify-content: left;
+
+        &.form {
+            margin-top: 5px;
+        }
+    }
+
+    li:hover {
+        background: #323b50;
+        transition: all 0.4 ease;
+    }
+
+    .add-btn {
+        margin-top: $padding;
+        font-size:20px;
+    }
+
+}

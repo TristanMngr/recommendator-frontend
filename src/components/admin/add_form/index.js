@@ -12,7 +12,7 @@ let in_obj;
 let add_function;
 let get_function;
 
-class PutForm extends React.Component {
+class AddForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -148,4 +148,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PutForm))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddForm))

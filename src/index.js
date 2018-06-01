@@ -6,6 +6,7 @@ import Dashboard from './components/dashboard'
 import Login from './components/login'
 import Speciality from './components/admin/speciality'
 import Module from './components/admin/module'
+import Admin from './components/admin'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -38,6 +39,7 @@ class App extends React.Component {
                             <Switch location={location}>
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
+                                    <Route exact path="/admin" component={Admin}/>
                                     <Route path="/admin/speciality/:id" component={Speciality}/>
                                     <Route path="/admin/module/:id" component={Module}/>
                             </Switch>
