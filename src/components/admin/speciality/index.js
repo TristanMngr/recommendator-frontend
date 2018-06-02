@@ -4,8 +4,7 @@ import { getSpeciality } from '../../../actions/speciality';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
-import PutForm from '../put_form'
-import AddForm from '../add_form'
+import Form from '../form'
 
 class Speciality extends React.Component {
     constructor(props) {
@@ -25,10 +24,10 @@ class Speciality extends React.Component {
         if (this.props.speciality){
 
             putForm =
-            <PutForm type="specialities" object={this.props.speciality} />
+            <Form method="put" type="specialities" object={this.props.speciality} />
 
             addForm =
-            <AddForm toAdd="modules" in="specialities" object={this.props.speciality} selectValue="Choisir un cours" />
+            <Form method="add" type="specialities" object={this.props.speciality} />
 
             component = (
                 <div>

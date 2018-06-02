@@ -8,7 +8,17 @@ export default class CustomItem extends React.Component {
     }
 
     render() {
-        const link_url = `/admin/${this.props.startingUrl}/${this.props.entityId}`
+        let url
+
+        switch (this.props.type) {
+            case "specialities":
+                url = "speciality"
+                break;
+            case "modules":
+                url = "module"
+        }
+
+        const link_url = `/admin/${url}/${this.props.entityId}`
 
         return(
             <div className={style.component} >
@@ -17,8 +27,8 @@ export default class CustomItem extends React.Component {
                             <div className="name">{this.props.name}</div>
                             <div className="description">{this.props.description}</div>
                             <div className="buttons">
-                                <div className="line">
-                                    <Link to={link_url}>k</Link>
+                                <div className="link">
+                                    <Link to={link_url}>Modifier</Link>
                                 </div>
                             </div>
                         </div>

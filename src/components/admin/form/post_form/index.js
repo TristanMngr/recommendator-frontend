@@ -1,6 +1,6 @@
 import React from 'react'
-import { addSpecialityToList } from '../../../actions/speciality';
-import { addModuleToList } from '../../../actions/module';
+import { addSpecialityToList } from '../../../../actions/speciality';
+import { addModuleToList } from '../../../../actions/module';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 

@@ -22,7 +22,7 @@ class Admin extends React.Component {
 
         const list_specialities = this.props.specialities ?
             (   <div>
-                    <CustomList entity="speciality" list={this.props.specialities} canAdd={true} />
+                    <CustomList type="specialities" list={this.props.specialities} canAdd={true} />
                 </div>
             ) :
             '';
@@ -31,7 +31,7 @@ class Admin extends React.Component {
 
         const list_modules = this.props.modules ?
             (   <div>
-                    <CustomList entity="module" list={this.props.modules} canAdd={true} />
+                    <CustomList type="modules" list={this.props.modules} canAdd={true} />
                 </div>
             ) :
             '';

@@ -4,8 +4,7 @@ import { getModule } from '../../../actions/module';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
-import PutForm from '../put_form'
-import AddForm from '../add_form'
+import Form from '../form'
 
 class Module extends React.Component {
     constructor(props) {
@@ -25,10 +24,10 @@ class Module extends React.Component {
         if (this.props.module){
 
             putForm =
-            <PutForm type="modules" object={this.props.module} />
+            <Form method="put" type="modules" object={this.props.module} />
 
             addForm =
-            <AddForm toAdd="concepts" in="modules" object={this.props.module} selectValue="Choisir un concept" />
+            <Form method="add" type="modules" object={this.props.module} />
 
             component = (
                 <div>

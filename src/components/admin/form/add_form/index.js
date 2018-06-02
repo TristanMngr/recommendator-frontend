@@ -1,7 +1,7 @@
 import React from 'react'
-import { addModuleToSpeciality } from '../../../actions/speciality';
-import { getModules, addConceptToModule } from '../../../actions/module'
-import { getConcepts } from '../../../actions/concept'
+import { addModuleToSpeciality } from '../../../../actions/speciality';
+import { getModules, addConceptToModule } from '../../../../actions/module'
+import { getConcepts } from '../../../../actions/concept'
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
@@ -120,7 +120,7 @@ const mapStateToProps = state => {
     let error;
     let isFetching;
     if (SPECIALITY_PAGE){
-        objects_toAdd = state.modules.current
+        objects_toAdd = state.modules.list
         isFetching = state.speciality.isFetching
         error = state.speciality.error
     }
