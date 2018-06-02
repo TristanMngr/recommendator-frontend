@@ -4,6 +4,20 @@ import { updateModule } from '../../../../actions/module';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
+// used to set the state depending on the page
+const SPECIALITY_PAGE_STATE = (name, desc) => {
+    return {
+        name: name,
+        description: desc,
+    }
+}
+
+const MODULE_PAGE_STATE = (name, desc) => {
+    return {
+        name: name,
+        description: desc,
+    }
+}
 
 //used to use the correct actions depending on the page
 let SPECIALITY_PAGE;
@@ -18,17 +32,11 @@ class PutForm extends React.Component {
         MODULE_PAGE = props.type === "modules";
 
         if (SPECIALITY_PAGE){
-            this.state = {
-                name: props.object.name,
-                description: props.object.description,
-            }
+            this.state = SPECIALITY_PAGE_STATE(props.object.name, props.object.description);
             update_function = updateSpeciality;
         }
         else if (MODULE_PAGE) {
-            this.state = {
-                name: props.object.name,
-                description: props.object.description,
-            }
+            this.state = MODULE_PAGE_STATE(props.object.name, props.object.description);
             update_function = updateModule;
         }
     }

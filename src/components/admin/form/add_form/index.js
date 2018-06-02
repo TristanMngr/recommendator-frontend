@@ -6,7 +6,15 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 
+// used to set the state depending on the page
+const SPECIALITY_PAGE_STATE = {
+    toAdd_id: 420,
+    is_main: false
+}
 
+const MODULE_PAGE_STATE = {
+    toAdd_id: 420
+}
 
 //used to use the correct actions depending on the page the component is used
 let SPECIALITY_PAGE;
@@ -22,17 +30,12 @@ class AddForm extends React.Component {
         MODULE_PAGE = props.toAdd === "concepts" && props.in === "modules";
 
         if (SPECIALITY_PAGE){
-            this.state = {
-                toAdd_id: 420,
-                is_main: false
-            }
+            this.state = SPECIALITY_PAGE_STATE;
             get_function = getModules;
             add_function = addModuleToSpeciality;
         }
         else if (MODULE_PAGE){
-            this.state = {
-                toAdd_id: 420
-            }
+            this.state = MODULE_PAGE_STATE;
             get_function = getConcepts;
             add_function = addConceptToModule;
         }

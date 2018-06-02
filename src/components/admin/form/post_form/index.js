@@ -4,6 +4,16 @@ import { addModuleToList } from '../../../../actions/module';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+// used to set and reinit the state depending on the list
+const SPECIALITY_STATE = {
+    name: '',
+    description: '',
+};
+
+const MODULE_STATE = {
+    name: '',
+    description: '',
+};
 
 //used to use the correct action depending on the list showing
 let SPECIALITIES;
@@ -17,17 +27,11 @@ class PostForm extends React.Component {
         SPECIALITIES = props.type === "speciality";
         MODULES = props.type === "module";
         if (SPECIALITIES){
-            this.state = {
-                name: '',
-                description: '',
-            }
+            this.state = SPECIALITY_STATE
             post_function = addSpecialityToList;
         }
         else if (MODULES) {
-            this.state = {
-                name: '',
-                description: '',
-            }
+            this.state = MODULE_STATE
             post_function = addModuleToList;
         }
     }
@@ -41,10 +45,10 @@ class PostForm extends React.Component {
     submitForm(e){
             e.preventDefault()
             this.props.post(this.state);
-            this.setState({
-                name: '',
-                description: ''
-            });
+            if (SPECIALITIES)
+                this.setState(SPECIALITY_STATE)
+            if (MODULES)
+                this.setState(MODULE_STATE)
     }
 
     render() {
