@@ -1,34 +1,34 @@
 import React from 'react'
-import { addSpeciality } from '../../../actions/speciality';
-import { addModule} from '../../../actions/module';
+import { addSpecialityToList } from '../../../actions/speciality';
+import { addModuleToList } from '../../../actions/module';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 
-//used to use the correct action
+//used to use the correct action depending on the list showing
+let SPECIALITIES;
+let MODULES;
 let post_function;
-let type;
 
 class PostForm extends React.Component {
 
     constructor(props) {
         super(props);
-        type = props.type;
-        switch (props.type) {
-            case "specialities":
-                this.state = {
-                    name: ' ',
-                    description: ' ',
-                }
-                post_function = addSpeciality;
-                break;
-            case "modules":
-                this.state = {
-                    name: '',
-                    description: '',
-                }
-                post_function = addModule;
-                break;
+        SPECIALITIES = props.type === "specialities";
+        MODULES = props.type === "modules";
+        if (SPECIALITIES){
+            this.state = {
+                name: '',
+                description: '',
+            }
+            post_function = addSpecialityToList;
+        }
+        else if (MODULES) {
+            this.state = {
+                name: '',
+                description: '',
+            }
+            post_function = addModuleToList;
         }
     }
 
@@ -45,7 +45,6 @@ class PostForm extends React.Component {
 
     render() {
 
-        console.log(this.state);
         return(
 
                 <div>
@@ -53,7 +52,6 @@ class PostForm extends React.Component {
                         {
                             Object.keys(this.state).map(
                                 (field, i) => {
-                                    console.log(field)
                                     return (
                                         <input key={i} type="text" name={field} value={this.state[field]}
                                             onChange={this.updateInfo.bind(this)} />
@@ -71,14 +69,10 @@ class PostForm extends React.Component {
 
 const mapStateToProps = state => {
     let isFetching
-    switch (type) {
-        case "specialities":
-            isFetching = state.speciality.isFetching
-            break;
-        case "modules":
-            isFetching = state.modules.isFetching
-            break;
-    }
+    if (SPECIALITIES)
+        isFetching = state.speciality.isFetching
+    else if (MODULES)
+        isFetching = state.modules.isFetching
 
     return {
         isFetching: isFetching,

@@ -13,14 +13,13 @@ export default class CustomList extends React.Component {
     }
 
     toggleHidden(){
-        console.log("he");
         this.setState({
             showHidden: !this.state.showHidden
         });
     }
 
     render() {
-
+        console.log(this.props.list);
         const component = this.props.list ?
         this.props.list.map(
             (elem, i) => {

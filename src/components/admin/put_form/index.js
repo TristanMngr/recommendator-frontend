@@ -5,30 +5,31 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 
-//used to use the correct action
+//used to use the correct actions depending on the page
+let SPECIALITY_PAGE;
+let MODULE_PAGE;
 let update_function;
-let type;
 
 class PutForm extends React.Component {
 
     constructor(props) {
         super(props);
-        type = props.type;
-        switch (props.type) {
-            case "specialities":
-                this.state = {
-                    name: props.object.name,
-                    description: props.object.description,
-                }
-                update_function = updateSpeciality;
-                break;
-            case "modules":
-                this.state = {
-                    name: props.object.name,
-                    description: props.object.description,
-                }
-                update_function = updateModule;
-                break;
+        SPECIALITY_PAGE = props.type === "specialities";
+        MODULE_PAGE = props.type === "modules";
+
+        if (SPECIALITY_PAGE){
+            this.state = {
+                name: props.object.name,
+                description: props.object.description,
+            }
+            update_function = updateSpeciality;
+        }
+        else if (MODULE_PAGE) {
+            this.state = {
+                name: props.object.name,
+                description: props.object.description,
+            }
+            update_function = updateModule;
         }
     }
 
@@ -67,14 +68,10 @@ class PutForm extends React.Component {
 
 const mapStateToProps = state => {
     let isFetching
-    switch (type) {
-        case "specialities":
-            isFetching = state.speciality.isFetching
-            break;
-        case "modules":
-            isFetching = state.modules.isFetching
-            break;
-    }
+    if (SPECIALITY_PAGE)
+        isFetching = state.speciality.isFetching
+    else if (MODULE_PAGE)
+        isFetching = state.modules.isFetching
 
     return {
         isFetching: isFetching,

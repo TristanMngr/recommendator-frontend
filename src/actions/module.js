@@ -11,6 +11,7 @@ export const ERROR_MODULES = 'ERROR_MODULES'
 export const REQUEST_ADD_CONCEPT_TO_MODULE = 'REQUEST_ADD_CONCEPT_TO_MODULE'
 export const RECEIVE_ADD_CONCEPT_TO_MODULE = 'RECEIVE_ADD_CONCEPT_TO_MODULE'
 export const ERROR_ADD_CONCEPT_TO_MODULE = 'ERROR_ADD_CONCEPT_TO_MODULE'
+export const RECEIVE_MODULE_IN_LIST = 'RECEIVE_MODULE_IN_LIST'
 
 export function requestModules() {
     return {
@@ -41,6 +42,13 @@ export function requestModule() {
 export function receiveModule(payload) {
     return {
         type: RECEIVE_MODULE,
+        payload
+    }
+}
+
+export function receiveModuleInList(payload) {
+    return {
+        type: RECEIVE_MODULE_IN_LIST,
         payload
     }
 }
@@ -131,7 +139,7 @@ export function updateModule(infos, id) {
 }
 
 
-export function addModule(infos) {
+export function addModuleToList(infos) {
 
     let config = {
         method: 'POST',
@@ -146,7 +154,7 @@ export function addModule(infos) {
         const response = await fetch(module_url, config)
         const json = await response.json()
         if (response.ok) {
-            dispatch(receiveModule(json))
+            dispatch(receiveModuleInList(json))
         }
         else {
             dispatch(errorModule(json.message))

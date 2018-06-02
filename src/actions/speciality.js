@@ -11,6 +11,7 @@ export const ERROR_SPECIALITIES = 'ERROR_SPECIALITIES'
 export const REQUEST_ADD_MODULE_TO_SPECIALITY = 'REQUEST_ADD_MODULE_TO_SPECIALITY'
 export const RECEIVE_ADD_MODULE_TO_SPECIALITY = 'RECEIVE_ADD_MODULE_TO_SPECIALITY'
 export const ERROR_ADD_MODULE_TO_SPECIALITY = 'ERROR_ADD_MODULE_TO_SPECIALITY'
+export const RECEIVE_SPECIALITY_IN_LIST = 'RECEIVE_SPECIALITY_IN_LIST'
 
 export function requestSpeciality() {
     return {
@@ -21,6 +22,13 @@ export function requestSpeciality() {
 export function receiveSpeciality(payload) {
     return {
         type: RECEIVE_SPECIALITY,
+        payload
+    }
+}
+
+export function receiveSpecialityInList(payload) {
+    return {
+        type: RECEIVE_SPECIALITY_IN_LIST,
         payload
     }
 }
@@ -129,7 +137,7 @@ export function updateSpeciality(infos, id) {
     }
 }
 
-export function addSpeciality(infos) {
+export function addSpecialityToList(infos) {
     // TODO recuperer le token dans le local storage plutot que ce token en dur
     let config = {
         method: 'POST',
@@ -144,7 +152,7 @@ export function addSpeciality(infos) {
         const response = await fetch(speciality_url, config)
         const json = await response.json()
         if (response.ok) {
-            dispatch(receiveSpeciality(json))
+            dispatch(receiveSpecialityInList(json))
         }
         else {
             dispatch(errorSpeciality(json.message))
