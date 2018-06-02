@@ -6,8 +6,9 @@ import {REQUEST_SPECIALITY, RECEIVE_SPECIALITY, ERROR_SPECIALITY,
 
 export default function speciality(state = {
     isFetching: false,
-    data: null,
-    error: null
+    list: null,
+    error: null,
+    current: null
     }, action) {
         switch(action.type) {
             case REQUEST_SPECIALITY:
@@ -15,9 +16,11 @@ export default function speciality(state = {
             case REQUEST_ADD_MODULE_TO_SPECIALITY:
                 return  {...state, isFetching: true}
             case RECEIVE_SPECIALITY:
+                return  {...state, isFetching: false, current: action.payload}
             case RECEIVE_SPECIALITIES:
+                return  {...state, isFetching: false, list: action.payload}
             case RECEIVE_ADD_MODULE_TO_SPECIALITY:
-                return  {...state, isFetching: false, data: action.payload}
+                return  {...state, isFetching: false, current: action.payload}
             case ERROR_SPECIALITY:
             case ERROR_SPECIALITIES:
             case ERROR_ADD_MODULE_TO_SPECIALITY:
@@ -26,7 +29,7 @@ export default function speciality(state = {
                 return {
                     ...state,
                     isFetching: false,
-                    data: [...state.data, action.payload]
+                    list: [...state.list, action.payload]
                 }
             default:
                 return state

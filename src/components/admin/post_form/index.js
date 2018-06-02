@@ -14,8 +14,8 @@ class PostForm extends React.Component {
 
     constructor(props) {
         super(props);
-        SPECIALITIES = props.type === "specialities";
-        MODULES = props.type === "modules";
+        SPECIALITIES = props.type === "speciality";
+        MODULES = props.type === "module";
         if (SPECIALITIES){
             this.state = {
                 name: '',

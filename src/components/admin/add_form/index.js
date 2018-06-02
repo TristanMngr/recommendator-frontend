@@ -120,7 +120,7 @@ const mapStateToProps = state => {
     let error;
     let isFetching;
     if (SPECIALITY_PAGE){
-        objects_toAdd = state.modules.data
+        objects_toAdd = state.modules.current
         isFetching = state.speciality.isFetching
         error = state.speciality.error
     }

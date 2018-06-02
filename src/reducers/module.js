@@ -4,8 +4,9 @@ import {REQUEST_MODULE, RECEIVE_MODULE, ERROR_MODULE, REQUEST_MODULES, RECEIVE_M
 
 export default function module(state = {
     isFetching: false,
-    data: null,
-    error: null
+    list: null,
+    error: null,
+    current: null
     }, action) {
         switch(action.type) {
             case REQUEST_MODULE:
@@ -13,9 +14,11 @@ export default function module(state = {
             case REQUEST_ADD_CONCEPT_TO_MODULE:
                 return  {...state, isFetching: true};
             case RECEIVE_MODULE:
+                return  {...state, isFetching: false, current: action.payload};
             case RECEIVE_MODULES:
+                return  {...state, isFetching: false, list: action.payload};
             case RECEIVE_ADD_CONCEPT_TO_MODULE:
-                return  {...state, isFetching: false, data: action.payload};
+                return  {...state, isFetching: false, current: action.payload};
             case ERROR_MODULE:
             case ERROR_MODULES:
             case ERROR_ADD_CONCEPT_TO_MODULE:
@@ -24,7 +27,7 @@ export default function module(state = {
             return {
                 ...state,
                 isFetching: false,
-                data: [...state.data, action.payload]
+                list: [...state.list, action.payload]
             }
             default:
                 return state

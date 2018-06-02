@@ -53,7 +53,7 @@ class Speciality extends React.Component {
 const mapStateToProps = state => {
     return {
         isFetching: state.speciality.isFetching,
-        speciality: state.speciality.data,
+        speciality: state.speciality.current,
         error: state.speciality.error
     }
 }

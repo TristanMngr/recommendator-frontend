@@ -53,7 +53,7 @@ class Module extends React.Component {
 const mapStateToProps = state => {
     return {
         isFetching: state.modules.isFetching,
-        module: state.modules.data,
+        module: state.modules.current,
         error: state.modules.error
     }
 }
