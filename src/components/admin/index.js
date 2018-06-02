@@ -22,22 +22,25 @@ class Admin extends React.Component {
 
         const list_specialities = this.props.specialities ?
             (   <div>
-                    <CustomList list={this.props.specialities} canAdd={true} />
+                    <CustomList entity="specialities" list={this.props.specialities} canAdd={true} />
                 </div>
             ) :
             '';
 
 
 
-        // const list_modules = this.props.modules ?
-        //     <ListSpecialities list={this.props.modules} /> :
-        //     '';
+        const list_modules = this.props.modules ?
+            (   <div>
+                    <CustomList entity="modules" list={this.props.modules} canAdd={true} />
+                </div>
+            ) :
+            '';
 
 
         return(
             <div className={style.component}>
                 {this.props.specialities && list_specialities}
-                {/*this.props.modules && list_modules*/}
+                {this.props.modules && list_modules}
             </div>
         )
     }

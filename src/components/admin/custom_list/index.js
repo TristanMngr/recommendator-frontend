@@ -19,7 +19,6 @@ export default class CustomList extends React.Component {
     }
 
     render() {
-        console.log(this.props.list);
         const component = this.props.list ?
         this.props.list.map(
             (elem, i) => {
@@ -35,7 +34,7 @@ export default class CustomList extends React.Component {
                     {component}
                 </ul>
                 <PostButton onClick={this.toggleHidden.bind(this)} />
-                {this.state.showHidden && <PostForm type="specialities" />}
+                {this.state.showHidden && <PostForm type={this.props.entity} />}
             </div>
         )
     }
