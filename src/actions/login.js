@@ -9,6 +9,7 @@ export const LOGIN_ERROR = 'LOGIN_ERROR'
 export const USER_REQUEST = 'USER_REQUEST'
 export const USER_SUCCESS = 'USER_SUCESS'
 export const USER_ERROR = 'USER_ERROR'
+export const USER_LOGOUT = 'USER_LOGOUT'
 
 export function requestLogin(credentials) {
     return {
@@ -48,6 +49,12 @@ export function errorUser(message) {
     return {
         type: USER_ERROR,
         message
+    }
+}
+
+export function logOut() {
+    return {
+        type: USER_LOGOUT
     }
 }
 
@@ -96,5 +103,13 @@ export function loginUser(credentials) {
             dispatch(errorLogin(json.message))
         }
         return false
+    }
+}
+
+export function logoutUser() {
+
+    return async dispatch => {
+        dispatch(logOut())
+        localStorage.setItem("id_token", null)
     }
 }

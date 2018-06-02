@@ -1,5 +1,5 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR,
-    USER_REQUEST, USER_SUCCESS, USER_ERROR } from '../actions/login'
+    USER_REQUEST, USER_SUCCESS, USER_ERROR, USER_LOGOUT } from '../actions/login'
 
 function auth(state = {
     isFetching: false,
@@ -40,6 +40,11 @@ function auth(state = {
             return {...state,
                 isFetching: false,
                 error: action.message
+            }
+        case USER_LOGOUT:
+            return {...state,
+                user: null,
+                isAuthenticated: false
             }
         default:
             return state
