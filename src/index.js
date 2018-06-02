@@ -13,6 +13,7 @@ import thunkMiddleware from 'redux-thunk'
 import Reducer from './reducers/combine'
 import history from './history'
 import PrivateRoute from './privateroutes'
+import AdminRoute from './adminroutes'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -28,7 +29,7 @@ class App extends React.Component {
 
 
     render() {
-        // TODO les routes /admin les rendre accessible juste pour les admins <AdminRoute>
+
         return(
             <Provider store={store}>
                 <Router history={history}>
@@ -39,9 +40,9 @@ class App extends React.Component {
                             <Switch location={location}>
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
-                                    <Route exact path="/admin" component={Admin}/>
-                                    <Route path="/admin/speciality/:id" component={Speciality}/>
-                                    <Route path="/admin/module/:id" component={Module}/>
+                                    <AdminRoute exact path="/admin" component={Admin}/>
+                                    <AdminRoute path="/admin/speciality/:id" component={Speciality}/>
+                                    <AdminRoute path="/admin/module/:id" component={Module}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

@@ -118,7 +118,7 @@ export function updateModule(infos, id) {
     let config = {
         method: 'PUT',
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
-        'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2IiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiZXhwIjoxNTI4NjE4NjY5fQ.7zJxzpPiyDXlUeDDKnreh7Mj0-BCC75YELp8tVClhd6mMbE7t9k6oe6tE6r_iJm8NZBrfFXU-5ABTmXdt67VOg"
+        'Authorization': localStorage.getItem('id_token')
         },
         body: `name=${infos.name}&description=${infos.description}`
     }
@@ -144,7 +144,7 @@ export function addModuleToList(infos) {
     let config = {
         method: 'POST',
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
-        'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2IiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiZXhwIjoxNTI4NjE4NjY5fQ.7zJxzpPiyDXlUeDDKnreh7Mj0-BCC75YELp8tVClhd6mMbE7t9k6oe6tE6r_iJm8NZBrfFXU-5ABTmXdt67VOg"
+        'Authorization': localStorage.getItem('id_token')
         },
         body: `name=${infos.name}&description=${infos.description}`
     }
@@ -165,11 +165,10 @@ export function addModuleToList(infos) {
 }
 
 export function addConceptToModule(infos) {
-    // TODO recuperer le token dans le local storage plutot que ce token en dur
     let config = {
         method: 'POST',
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
-        'Authorization': "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2IiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiZXhwIjoxNTI4NjE4NjY5fQ.7zJxzpPiyDXlUeDDKnreh7Mj0-BCC75YELp8tVClhd6mMbE7t9k6oe6tE6r_iJm8NZBrfFXU-5ABTmXdt67VOg"
+        'Authorization': localStorage.getItem('id_token')
         },
         body: `concept_id=${infos.toAdd_id}`
     }
