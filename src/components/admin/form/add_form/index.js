@@ -7,6 +7,7 @@ import {withRouter} from 'react-router-dom'
 
 
 // used to set the state depending on the page
+// change the value in theses const to choose what we have to give to the backend and match the relation model
 const SPECIALITY_PAGE_STATE = {
     toAdd_id: 420,
     is_main: false

@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 // used to set the state depending on the page
+// change the value in theses const to choose what we want to give right to update and match the backend's entity model
+
 const SPECIALITY_PAGE_STATE = (name, desc) => {
     return {
         name: name,

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 // used to set and reinit the state depending on the list
+// change the value in theses const to choose what we have to give to the backend and match the entity model
 const SPECIALITY_STATE = {
     name: '',
     description: '',
