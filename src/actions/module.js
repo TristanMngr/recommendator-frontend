@@ -12,6 +12,7 @@ export const REQUEST_ADD_CONCEPT_TO_MODULE = 'REQUEST_ADD_CONCEPT_TO_MODULE'
 export const RECEIVE_ADD_CONCEPT_TO_MODULE = 'RECEIVE_ADD_CONCEPT_TO_MODULE'
 export const ERROR_ADD_CONCEPT_TO_MODULE = 'ERROR_ADD_CONCEPT_TO_MODULE'
 export const RECEIVE_MODULE_IN_LIST = 'RECEIVE_MODULE_IN_LIST'
+export const DELETE_MODULE_FROM_LIST = 'DELETE_MODULE_FROM_LIST'
 
 export function requestModules() {
     return {
@@ -43,6 +44,13 @@ export function receiveModule(payload) {
     return {
         type: RECEIVE_MODULE,
         payload
+    }
+}
+
+export function deleteModuleFromList(id) {
+    return {
+        type: DELETE_MODULE_FROM_LIST,
+        id
     }
 }
 
@@ -155,6 +163,29 @@ export function addModuleToList(infos) {
         const json = await response.json()
         if (response.ok) {
             dispatch(receiveModuleInList(json))
+        }
+        else {
+            dispatch(errorModule(json.message))
+
+        }
+        return false
+    }
+}
+
+export function deleteModule(module_id) {
+    let config = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        }
+    }
+
+    return async dispatch => {
+        dispatch(requestModule())
+        const response = await fetch(module_url + module_id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(deleteModuleFromList(json.id))
         }
         else {
             dispatch(errorModule(json.message))

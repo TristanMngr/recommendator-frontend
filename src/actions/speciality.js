@@ -12,6 +12,11 @@ export const REQUEST_ADD_MODULE_TO_SPECIALITY = 'REQUEST_ADD_MODULE_TO_SPECIALIT
 export const RECEIVE_ADD_MODULE_TO_SPECIALITY = 'RECEIVE_ADD_MODULE_TO_SPECIALITY'
 export const ERROR_ADD_MODULE_TO_SPECIALITY = 'ERROR_ADD_MODULE_TO_SPECIALITY'
 export const RECEIVE_SPECIALITY_IN_LIST = 'RECEIVE_SPECIALITY_IN_LIST'
+export const DELETE_SPECIALITY_FROM_LIST = 'DELETE_SPECIALITY_FROM_LIST'
+export const REQUEST_DELETE_MODULE_FROM_SPECIALITY = 'REQUEST_DELETE_MODULE_FROM_SPECIALITY'
+export const RECEIVE_DELETE_MODULE_FROM_SPECIALITY = 'RECEIVE_DELETE_MODULE_FROM_SPECIALITY'
+export const ERROR_DELETE_MODULE_FROM_SPECIALITY = 'ERROR_DELETE_MODULE_FROM_SPECIALITY'
+
 
 export function requestSpeciality() {
     return {
@@ -30,6 +35,13 @@ export function receiveSpecialityInList(payload) {
     return {
         type: RECEIVE_SPECIALITY_IN_LIST,
         payload
+    }
+}
+
+export function deleteSpecialityFromList(id) {
+    return {
+        type: DELETE_SPECIALITY_FROM_LIST,
+        id
     }
 }
 
@@ -76,6 +88,26 @@ export function receiveAddModuleToSpeciality(payload) {
 export function errorAddModuleToSpeciality(message) {
     return {
         type: ERROR_ADD_MODULE_TO_SPECIALITY,
+        message
+    }
+}
+
+export function requestDeleteModuleFromSpeciality() {
+    return {
+        type: REQUEST_DELETE_MODULE_FROM_SPECIALITY
+    }
+}
+
+export function receiveDeleteModuleFromSpeciality(payload) {
+    return {
+        type: RECEIVE_DELETE_MODULE_FROM_SPECIALITY,
+        payload
+    }
+}
+
+export function errorDeleteModuleFromSpeciality(message) {
+    return {
+        type: ERROR_DELETE_MODULE_FROM_SPECIALITY,
         message
     }
 }
@@ -160,6 +192,29 @@ export function addSpecialityToList(infos) {
     }
 }
 
+export function deleteSpeciality(speciality_id) {
+    let config = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        }
+    }
+
+    return async dispatch => {
+        dispatch(requestSpeciality())
+        const response = await fetch(speciality_url + speciality_id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(deleteSpecialityFromList(json.id))
+        }
+        else {
+            dispatch(errorSpeciality(json.message))
+
+        }
+        return false
+    }
+}
+
 export function addModuleToSpeciality(infos) {
     let config = {
         method: 'POST',
@@ -178,6 +233,29 @@ export function addModuleToSpeciality(infos) {
         }
         else {
             dispatch(errorAddModuleToSpeciality(json.message))
+        }
+        return false
+    }
+}
+
+export function deleteModuleFromSpeciality(speciality_id, module_id) {
+    let config = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        }
+    }
+
+    return async dispatch => {
+        dispatch(requestDeleteModuleFromSpeciality())
+        const response = await fetch(speciality_url + speciality_id + "/modules/" + module_id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(receiveDeleteModuleFromSpeciality(json))
+        }
+        else {
+            dispatch(errorDeleteModuleFromSpeciality(json.message))
+
         }
         return false
     }

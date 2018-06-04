@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
 import Form from '../form'
+import CustomList from '../custom_list'
 
 class Speciality extends React.Component {
     constructor(props) {
@@ -22,7 +23,6 @@ class Speciality extends React.Component {
         let component = '';
 
         if (this.props.speciality){
-
             putForm =
             <Form method="put" type="specialities" object={this.props.speciality} />
 
@@ -32,6 +32,10 @@ class Speciality extends React.Component {
             component = (
                 <div>
                     <h1>{this.props.speciality.name}</h1>
+
+                    <CustomList type="modules" list={this.props.speciality.specialityModules}
+                        specialityModules={true} deleteFrom={this.props.speciality.id} />
+
                     <div className="actions">
                         <BigButton text="Modifier les informations du parcours" hidden={putForm} />
                         <BigButton text="Ajouter un cours" hidden={addForm} />
