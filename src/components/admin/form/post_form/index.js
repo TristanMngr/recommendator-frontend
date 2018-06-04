@@ -62,7 +62,7 @@ class PostForm extends React.Component {
                             Object.keys(this.state).map(
                                 (field, i) => {
                                     return (
-                                        <input key={i} type="text" name={field} value={this.state[field]}
+                                        <input key={i} type="text" name={field} value={this.state[field]} placeholder={field}
                                             onChange={this.updateInfo.bind(this)} />
                                         )
                                 })

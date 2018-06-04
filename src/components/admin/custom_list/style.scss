@@ -19,10 +19,15 @@
         }
     }
 
-        .line {
-            display: flex;
-            justify-content: left;
+    .line {
+        display: flex;
+        justify-content: left;
+    }
+
+        .buttons {
+            display:inline-flex;
             a {
+                padding-top: 1px;
                 text-decoration: none;
                 color: $link-color;
             }
@@ -30,12 +35,16 @@
                 color: $grey;
                 transition: all 0.3s ease;
             }
+
+            .trash-btn {
+                margin-left: 10px;
+                cursor: pointer;
+                color: $link-color;
+
+            }
+            .trash-btn:hover {
+                color: $grey;
+                transition: all 0.3s ease;
+            }
         }
-
-
-    .add-btn {
-        margin-top: $padding;
-        font-size:20px;
-    }
-
 }

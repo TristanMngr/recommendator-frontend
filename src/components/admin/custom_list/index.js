@@ -1,7 +1,6 @@
 import React from 'react'
 import style from './style.scss'
 import CustomItem from './custom_item'
-import PostButton from '../post_button'
 import Form from '../form'
 
 export default class CustomList extends React.Component {
@@ -28,11 +27,8 @@ export default class CustomList extends React.Component {
         ) :
         '';
 
-
         return(
             <div className={style.component} >
-                <PostButton onClick={this.toggleHidden.bind(this)} />
-                {this.state.showHidden && <Form method="post" type={this.props.type} />}
                 <ul>
                     {component}
                 </ul>

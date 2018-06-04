@@ -1,6 +1,7 @@
 import React from 'react'
 import style from '../style.scss'
 import { Link } from 'react-router-dom'
+import FontAwesome from 'react-fontawesome'
 
 export default class CustomItem extends React.Component {
     constructor(props) {
@@ -26,9 +27,12 @@ export default class CustomItem extends React.Component {
                         <div className="line">
                             <div className="name">{this.props.name}</div>
                             <div className="description">{this.props.description}</div>
-                            <div className="buttons">
-                                <div className="link">
+                            <div>
+                                <div className="buttons">
                                     <Link to={link_url}>Modifier</Link>
+                                    <div className="trash-btn">
+                                        <FontAwesome name="trash-alt" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

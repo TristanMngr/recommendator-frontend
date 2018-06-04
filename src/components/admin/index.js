@@ -5,6 +5,8 @@ import { getModules } from '../../actions/module';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import CustomList  from './custom_list'
+import Form from './form'
+import BigButton from './big_button'
 
 class Admin extends React.Component {
     constructor(props) {
@@ -22,25 +24,37 @@ class Admin extends React.Component {
 
         const list_specialities = this.props.specialities ?
             (   <div>
-                    <CustomList type="specialities" list={this.props.specialities} canAdd={true} />
+                    <CustomList type="specialities" list={this.props.specialities} />
                 </div>
             ) :
             '';
 
+        const form_specialities = <Form method="post" type="specialities" />;
 
 
         const list_modules = this.props.modules ?
             (   <div>
-                    <CustomList type="modules" list={this.props.modules} canAdd={true} />
+                    <CustomList type="modules" list={this.props.modules} />
                 </div>
             ) :
             '';
 
+        const form_modules = <Form method="post" type="modules" />;
 
         return(
             <div className={style.component}>
-                {this.props.specialities && list_specialities}
-                {this.props.modules && list_modules}
+                <div>
+                    <div className="add">
+                        <BigButton text="Ajouter un parcours" hidden={form_specialities} />
+                    </div>
+                    {this.props.specialities && list_specialities}
+                </div>
+                <div>
+                    <div className="add">
+                        <BigButton text="Ajouter un cours" hidden={form_modules} />
+                    </div>
+                    {this.props.modules && list_modules}
+                </div>
             </div>
         )
     }

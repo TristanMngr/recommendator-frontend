@@ -2,8 +2,9 @@
     $padding: 15px;
 
     .big-btn {
+        cursor: pointer;
         margin-bottom: $padding;
-        margin-right: 50%;
+        margin-top: $padding;
         background:#323b50;
         padding: $padding;
     }
