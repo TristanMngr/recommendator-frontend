@@ -30,7 +30,8 @@ export default class CustomList extends React.Component {
             component = this.props.list.map(
                 (elem, i) => {
                     return <CustomItem key={this.props.type+elem.module.id} type={this.props.type}
-                        name={elem.module.name} description={elem.module.description} entityId={elem.module.id} deleteFrom={this.props.deleteFrom}/>
+                        name={elem.module.name} description={elem.module.description} entityId={elem.module.id}
+                        deleteFrom={this.props.deleteFrom} isMain={elem.mainModule} />
                 }
             );
         }

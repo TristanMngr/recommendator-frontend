@@ -1,10 +1,11 @@
 import React from 'react'
 import style from '../style.scss'
 import FontAwesome from 'react-fontawesome'
-import { deleteSpeciality, deleteModuleFromSpeciality } from '../../../../actions/speciality';
+import { deleteSpeciality, deleteModuleFromSpeciality, updateMainModuleFromSpeciality } from '../../../../actions/speciality';
 import { deleteModule } from '../../../../actions/module';
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { Checkbox } from 'semantic-ui-react'
 
 let SPECIALITY;
 let MODULE;
@@ -15,6 +16,9 @@ class CustomItem extends React.Component {
     constructor(props) {
         super(props);
         this.updateConstants();
+        this.state = {
+            is_main: this.props.isMain
+        }
     }
 
     updateConstants() {
@@ -36,14 +40,32 @@ class CustomItem extends React.Component {
             this.props.delFrom(this.props.deleteFrom, this.props.entityId);
     }
 
+    switchIsMain(e){
+        this.setState({
+            is_main: !this.state.is_main
+        }, () => {
+            this.props.switchIsMain(this.props.deleteFrom, this.props.entityId, this.state.is_main);
+        })
+    }
+
     render() {
         this.updateConstants();
 
         let url
+        let toggle
         if (SPECIALITY)
             url = "speciality"
-        if (MODULE)
+        if (MODULE) {
             url = "module"
+            if (this.props.isMain != undefined)
+                toggle = (
+                    <div className="toggle">
+                        <Checkbox onClick={this.switchIsMain.bind(this)} toggle
+                            label={"cours coeur"}
+                            checked={this.state.is_main} />
+                    </div>
+                )
+        }
 
         const link_url = `/admin/${url}/${this.props.entityId}`
 
@@ -53,6 +75,7 @@ class CustomItem extends React.Component {
                         <div className="line">
                             <div className="name">{this.props.name}</div>
                             <div className="description">{this.props.description}</div>
+                            { toggle }
                             <div>
                                 <div className="buttons">
                                     <Link to={link_url}>Modifier</Link>
@@ -87,6 +110,9 @@ const mapDispatchToProps = dispatch => {
         },
         delFrom: (from_id, to_delete_id) => {
             dispatch(delete_from_function(from_id, to_delete_id))
+        },
+        switchIsMain: (from_id, to_update_id, is_main) => {
+            dispatch(updateMainModuleFromSpeciality(from_id, to_update_id, is_main))
         }
     }
 }

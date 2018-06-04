@@ -216,3 +216,27 @@ export function deleteModuleFromSpeciality(speciality_id, module_id) {
         return false
     }
 }
+
+export function updateMainModuleFromSpeciality(speciality_id, module_id, is_main) {
+    let config = {
+        method: 'PUT',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+    },
+    body: `is_main=${is_main}`
+    }
+
+    return async dispatch => {
+        dispatch(requestSpeciality)
+        const response = await fetch(speciality_url + speciality_id + "/modules/" + module_id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(receiveSpeciality(json))
+        }
+        else {
+            dispatch(errorSpeciality(json.message))
+
+        }
+        return false
+    }
+}
