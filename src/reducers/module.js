@@ -1,6 +1,5 @@
-import {REQUEST_MODULE, RECEIVE_MODULE, ERROR_MODULE, REQUEST_MODULES, RECEIVE_MODULES, ERROR_MODULES,
-    REQUEST_ADD_CONCEPT_TO_MODULE, RECEIVE_ADD_CONCEPT_TO_MODULE, ERROR_ADD_CONCEPT_TO_MODULE,
-    RECEIVE_MODULE_IN_LIST, DELETE_MODULE_FROM_LIST} from '../actions/module'
+import {REQUEST_MODULE, RECEIVE_MODULE, ERROR_MODULE, RECEIVE_MODULES, RECEIVE_ADD_CONCEPT_TO_MODULE,
+    RECEIVE_MODULE_IN_LIST, RECEIVE_DELETE_MODULE_FROM_LIST} from '../actions/module'
 
 export default function module(state = {
     isFetching: false,
@@ -10,8 +9,6 @@ export default function module(state = {
     }, action) {
         switch(action.type) {
             case REQUEST_MODULE:
-            case REQUEST_MODULES:
-            case REQUEST_ADD_CONCEPT_TO_MODULE:
                 return  {...state, isFetching: true};
             case RECEIVE_MODULE:
                 return  {...state, isFetching: false, current: action.payload};
@@ -20,8 +17,6 @@ export default function module(state = {
             case RECEIVE_ADD_CONCEPT_TO_MODULE:
                 return  {...state, isFetching: false, current: action.payload};
             case ERROR_MODULE:
-            case ERROR_MODULES:
-            case ERROR_ADD_CONCEPT_TO_MODULE:
                 return {...state, isFetching: false, error: action.message};
             case RECEIVE_MODULE_IN_LIST:
                 return {
@@ -29,7 +24,7 @@ export default function module(state = {
                     isFetching: false,
                     list: [...state.list, action.payload]
                 }
-            case DELETE_MODULE_FROM_LIST:
+            case RECEIVE_DELETE_MODULE_FROM_LIST:
                 return {
                     ...state,
                     isFetching: false,

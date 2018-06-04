@@ -3,34 +3,18 @@ import config from '../config'
 const module_url = `${config.api_url}/modules/`
 
 export const REQUEST_MODULE = 'REQUEST_MODULE'
-export const RECEIVE_MODULE = 'RECEIVE_MODULE'
 export const ERROR_MODULE = 'ERROR_MODULE'
-export const REQUEST_MODULES = 'REQUEST_MODULES'
-export const RECEIVE_MODULES = 'RECEIVE_MODULES'
-export const ERROR_MODULES = 'ERROR_MODULES'
-export const REQUEST_ADD_CONCEPT_TO_MODULE = 'REQUEST_ADD_CONCEPT_TO_MODULE'
-export const RECEIVE_ADD_CONCEPT_TO_MODULE = 'RECEIVE_ADD_CONCEPT_TO_MODULE'
-export const ERROR_ADD_CONCEPT_TO_MODULE = 'ERROR_ADD_CONCEPT_TO_MODULE'
-export const RECEIVE_MODULE_IN_LIST = 'RECEIVE_MODULE_IN_LIST'
-export const DELETE_MODULE_FROM_LIST = 'DELETE_MODULE_FROM_LIST'
 
-export function requestModules() {
-    return {
-        type: REQUEST_MODULES
-    }
-}
+export const RECEIVE_MODULE = 'RECEIVE_MODULE'
+export const RECEIVE_MODULES = 'RECEIVE_MODULES'
+export const RECEIVE_ADD_CONCEPT_TO_MODULE = 'RECEIVE_ADD_CONCEPT_TO_MODULE'
+export const RECEIVE_MODULE_IN_LIST = 'RECEIVE_MODULE_IN_LIST'
+export const RECEIVE_DELETE_MODULE_FROM_LIST = 'RECEIVE_DELETE_MODULE_FROM_LIST'
 
 export function receiveModules(payload) {
     return {
         type: RECEIVE_MODULES,
         payload
-    }
-}
-
-export function errorModules(message) {
-    return {
-        type: ERROR_MODULES,
-        message
     }
 }
 
@@ -49,7 +33,7 @@ export function receiveModule(payload) {
 
 export function deleteModuleFromList(id) {
     return {
-        type: DELETE_MODULE_FROM_LIST,
+        type: RECEIVE_DELETE_MODULE_FROM_LIST,
         id
     }
 }
@@ -68,12 +52,6 @@ export function errorModule(message) {
     }
 }
 
-export function requestAddConceptToModule() {
-    return {
-        type: REQUEST_ADD_CONCEPT_TO_MODULE
-    }
-}
-
 export function receiveAddConceptToModule(payload) {
     return {
         type: RECEIVE_ADD_CONCEPT_TO_MODULE,
@@ -81,17 +59,9 @@ export function receiveAddConceptToModule(payload) {
     }
 }
 
-export function errorAddConceptToModule(message) {
-    return {
-        type: ERROR_ADD_CONCEPT_TO_MODULE,
-        message
-    }
-}
-
-
 export function getModules() {
     return async dispatch => {
-        dispatch(requestModules)
+        dispatch(requestModule)
         const response = await fetch(module_url)
         const json = await response.json()
         if (response.ok) {
@@ -99,7 +69,7 @@ export function getModules() {
             dispatch(receiveModules(json))
         }
         else {
-            dispatch(errorModules(json.message))
+            dispatch(errorModule(json.message))
         }
 
     }
@@ -132,7 +102,7 @@ export function updateModule(infos, id) {
     }
 
     return async dispatch => {
-        dispatch(requestModule(infos))
+        dispatch(requestModule)
         const response = await fetch(module_url + id, config)
         const json = await response.json()
         if (response.ok) {
@@ -158,7 +128,7 @@ export function addModuleToList(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestModule(infos))
+        dispatch(requestModule)
         const response = await fetch(module_url, config)
         const json = await response.json()
         if (response.ok) {
@@ -181,7 +151,7 @@ export function deleteModule(module_id) {
     }
 
     return async dispatch => {
-        dispatch(requestModule())
+        dispatch(requestModule)
         const response = await fetch(module_url + module_id, config)
         const json = await response.json()
         if (response.ok) {
@@ -205,14 +175,14 @@ export function addConceptToModule(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestAddConceptToModule())
+        dispatch(requestModule())
         const response = await fetch(module_url + infos.object_id + "/concepts", config)
         const json = await response.json()
         if (response.ok) {
             dispatch(receiveAddConceptToModule(json))
         }
         else {
-            dispatch(errorAddConceptToModule(json.message))
+            dispatch(errorModule(json.message))
         }
         return false
     }

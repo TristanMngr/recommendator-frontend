@@ -3,20 +3,14 @@ import config from '../config'
 const speciality_url = `${config.api_url}/specialities/`
 
 export const REQUEST_SPECIALITY = 'REQUEST_SPECIALITY'
-export const RECEIVE_SPECIALITY = 'RECEIVE_SPECIALITY'
 export const ERROR_SPECIALITY = 'ERROR_SPECIALITY'
-export const REQUEST_SPECIALITIES = 'REQUEST_SPECIALITIES'
-export const RECEIVE_SPECIALITIES = 'RECEIVE_SPECIALITIES'
-export const ERROR_SPECIALITIES = 'ERROR_SPECIALITIES'
-export const REQUEST_ADD_MODULE_TO_SPECIALITY = 'REQUEST_ADD_MODULE_TO_SPECIALITY'
-export const RECEIVE_ADD_MODULE_TO_SPECIALITY = 'RECEIVE_ADD_MODULE_TO_SPECIALITY'
-export const ERROR_ADD_MODULE_TO_SPECIALITY = 'ERROR_ADD_MODULE_TO_SPECIALITY'
-export const RECEIVE_SPECIALITY_IN_LIST = 'RECEIVE_SPECIALITY_IN_LIST'
-export const DELETE_SPECIALITY_FROM_LIST = 'DELETE_SPECIALITY_FROM_LIST'
-export const REQUEST_DELETE_MODULE_FROM_SPECIALITY = 'REQUEST_DELETE_MODULE_FROM_SPECIALITY'
-export const RECEIVE_DELETE_MODULE_FROM_SPECIALITY = 'RECEIVE_DELETE_MODULE_FROM_SPECIALITY'
-export const ERROR_DELETE_MODULE_FROM_SPECIALITY = 'ERROR_DELETE_MODULE_FROM_SPECIALITY'
 
+export const RECEIVE_SPECIALITY = 'RECEIVE_SPECIALITY'
+export const RECEIVE_SPECIALITY_IN_LIST = 'RECEIVE_SPECIALITY_IN_LIST'
+export const RECEIVE_DELETE_MODULE_FROM_SPECIALITY = 'RECEIVE_DELETE_MODULE_FROM_SPECIALITY'
+export const RECEIVE_SPECIALITIES = 'RECEIVE_SPECIALITIES'
+export const RECEIVE_ADD_MODULE_TO_SPECIALITY = 'RECEIVE_ADD_MODULE_TO_SPECIALITY'
+export const RECEIVE_DELETE_SPECIALITY_FROM_LIST = 'RECEIVE_DELETE_SPECIALITY_FROM_LIST'
 
 export function requestSpeciality() {
     return {
@@ -40,7 +34,7 @@ export function receiveSpecialityInList(payload) {
 
 export function deleteSpecialityFromList(id) {
     return {
-        type: DELETE_SPECIALITY_FROM_LIST,
+        type: RECEIVE_DELETE_SPECIALITY_FROM_LIST,
         id
     }
 }
@@ -52,29 +46,10 @@ export function errorSpeciality(message) {
     }
 }
 
-export function requestSpecialities() {
-    return {
-        type: REQUEST_SPECIALITIES
-    }
-}
-
 export function receiveSpecialities(payload) {
     return {
         type: RECEIVE_SPECIALITIES,
         payload
-    }
-}
-
-export function errorSpecialities(message) {
-    return {
-        type: ERROR_SPECIALITIES,
-        message
-    }
-}
-
-export function requestAddModuleToSpeciality() {
-    return {
-        type: REQUEST_ADD_MODULE_TO_SPECIALITY
     }
 }
 
@@ -85,19 +60,6 @@ export function receiveAddModuleToSpeciality(payload) {
     }
 }
 
-export function errorAddModuleToSpeciality(message) {
-    return {
-        type: ERROR_ADD_MODULE_TO_SPECIALITY,
-        message
-    }
-}
-
-export function requestDeleteModuleFromSpeciality() {
-    return {
-        type: REQUEST_DELETE_MODULE_FROM_SPECIALITY
-    }
-}
-
 export function receiveDeleteModuleFromSpeciality(payload) {
     return {
         type: RECEIVE_DELETE_MODULE_FROM_SPECIALITY,
@@ -105,12 +67,6 @@ export function receiveDeleteModuleFromSpeciality(payload) {
     }
 }
 
-export function errorDeleteModuleFromSpeciality(message) {
-    return {
-        type: ERROR_DELETE_MODULE_FROM_SPECIALITY,
-        message
-    }
-}
 
 export function getSpeciality(speciality_id) {
     return async dispatch => {
@@ -130,7 +86,7 @@ export function getSpeciality(speciality_id) {
 
 export function getSpecialities() {
     return async dispatch => {
-        dispatch(requestSpecialities)
+        dispatch(requestSpeciality)
         const response = await fetch(speciality_url)
         const json = await response.json()
         if (response.ok) {
@@ -138,7 +94,7 @@ export function getSpecialities() {
             dispatch(receiveSpecialities(json))
         }
         else {
-            dispatch(errorSpecialities(json.message))
+            dispatch(errorSpeciality(json.message))
         }
 
     }
@@ -154,7 +110,7 @@ export function updateSpeciality(infos, id) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality(infos))
+        dispatch(requestSpeciality)
         const response = await fetch(speciality_url + id, config)
         const json = await response.json()
         if (response.ok) {
@@ -178,7 +134,7 @@ export function addSpecialityToList(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality(infos))
+        dispatch(requestSpeciality)
         const response = await fetch(speciality_url, config)
         const json = await response.json()
         if (response.ok) {
@@ -201,7 +157,7 @@ export function deleteSpeciality(speciality_id) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality())
+        dispatch(requestSpeciality)
         const response = await fetch(speciality_url + speciality_id, config)
         const json = await response.json()
         if (response.ok) {
@@ -225,14 +181,14 @@ export function addModuleToSpeciality(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestAddModuleToSpeciality())
+        dispatch(requestSpeciality)
         const response = await fetch(speciality_url + infos.object_id + "/modules", config)
         const json = await response.json()
         if (response.ok) {
             dispatch(receiveAddModuleToSpeciality(json))
         }
         else {
-            dispatch(errorAddModuleToSpeciality(json.message))
+            dispatch(errorSpeciality(json.message))
         }
         return false
     }
@@ -247,14 +203,14 @@ export function deleteModuleFromSpeciality(speciality_id, module_id) {
     }
 
     return async dispatch => {
-        dispatch(requestDeleteModuleFromSpeciality())
+        dispatch(requestSpeciality)
         const response = await fetch(speciality_url + speciality_id + "/modules/" + module_id, config)
         const json = await response.json()
         if (response.ok) {
             dispatch(receiveDeleteModuleFromSpeciality(json))
         }
         else {
-            dispatch(errorDeleteModuleFromSpeciality(json.message))
+            dispatch(errorSpeciality(json.message))
 
         }
         return false
