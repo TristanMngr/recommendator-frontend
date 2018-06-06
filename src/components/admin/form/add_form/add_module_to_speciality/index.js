@@ -6,9 +6,7 @@ import { withRouter } from 'react-router-dom'
 import ErrorMessage from '../../error_message'
 import AddForm from '../../add_form'
 
-
-//TODO commenter un peu tt le code :)
-// change the value in theses const to choose what we have to give to the backend and match the relation model
+// the relation between module and speciality contains the is_main argument
 const INITIAL_STATE = {
     module_id: null,
     is_main: false
@@ -61,7 +59,8 @@ class AddModuleToSpecialityForm extends React.Component {
                     <AddForm toAdd="modules"
                         submitForm={this.submitForm.bind(this)} updateSelect={this.updateSelect.bind(this)}
                         updateCheckbox={this.updateCheckbox.bind(this)} objectsToAdd={this.props.modules}
-                        selectValue="Choisir un cours" alreadyInIds={already_in_ids} isMain={this.state.is_main} />
+                        selectValue="Choisir un cours" alreadyInIds={already_in_ids} isMain={this.state.is_main}
+                        isFetching={this.props.isFetching} />
                     <ErrorMessage error={this.props.error} />
                 </React.Fragment>
             )

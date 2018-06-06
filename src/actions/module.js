@@ -102,7 +102,7 @@ export function updateModule(infos, id) {
     }
 
     return async dispatch => {
-        dispatch(requestModule)
+        dispatch(requestModule())
         const response = await fetch(module_url + id, config)
         const json = await response.json()
         if (response.ok) {
@@ -128,7 +128,7 @@ export function addModuleToList(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestModule)
+        dispatch(requestModule())
         const response = await fetch(module_url, config)
         const json = await response.json()
         if (response.ok) {
@@ -151,7 +151,7 @@ export function deleteModule(module_id) {
     }
 
     return async dispatch => {
-        dispatch(requestModule)
+        dispatch(requestModule())
         const response = await fetch(module_url + module_id, config)
         const json = await response.json()
         if (response.ok) {

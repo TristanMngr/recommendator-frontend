@@ -6,8 +6,6 @@ import { withRouter } from 'react-router-dom'
 import ErrorMessage from '../../error_message'
 import AddForm from '../../add_form'
 
-
-// change the value in theses const to choose what we have to give to the backend and match the relation model
 const INITIAL_STATE = {
     concept_id: null
 }
@@ -57,7 +55,7 @@ class AddConceptToModuleForm extends React.Component {
                 <React.Fragment>
                     <AddForm toAdd="concepts" submitForm={this.submitForm.bind(this)}
                         updateSelect={this.updateSelect.bind(this)} objectsToAdd={this.props.concepts}
-                        selectValue="Choisir un concept" alreadyInIds={already_in_ids} />
+                        selectValue="Choisir un concept" alreadyInIds={already_in_ids} isFetching={this.props.isFetching} />
                     <ErrorMessage error={this.props.error} />
                 </React.Fragment>
             )

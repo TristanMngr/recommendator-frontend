@@ -7,7 +7,7 @@ import BigButton from '../big_button'
 import Form from '../form'
 import CustomList from '../custom_list'
 
-class Speciality extends React.Component {
+class SpecialityPage extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -69,4 +69,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Speciality))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SpecialityPage))

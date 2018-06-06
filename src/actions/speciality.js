@@ -84,7 +84,7 @@ const handleError = (dispatch, message) => {
 
 export function getSpeciality(speciality_id) {
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url + speciality_id)
         const json = await response.json()
         if (response.ok) {
@@ -100,7 +100,7 @@ export function getSpeciality(speciality_id) {
 
 export function getSpecialities() {
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url)
         const json = await response.json()
         if (response.ok) {
@@ -124,7 +124,7 @@ export function updateSpeciality(infos, id) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url + id, config)
         const json = await response.json()
         if (response.ok) {
@@ -148,7 +148,7 @@ export function addSpecialityToList(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url, config)
         const json = await response.json()
         if (response.ok) {
@@ -171,7 +171,7 @@ export function deleteSpeciality(speciality_id) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url + speciality_id, config)
         const json = await response.json()
         if (response.ok) {
@@ -195,7 +195,7 @@ export function addModuleToSpeciality(infos) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url + infos.speciality_id + "/modules", config)
         const json = await response.json()
         if (response.ok) {
@@ -217,7 +217,7 @@ export function deleteModuleFromSpeciality(speciality_id, module_id) {
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url + speciality_id + "/modules/" + module_id, config)
         const json = await response.json()
         if (response.ok) {
@@ -241,7 +241,7 @@ export function updateMainModuleFromSpeciality(speciality_id, module_id, is_main
     }
 
     return async dispatch => {
-        dispatch(requestSpeciality)
+        dispatch(requestSpeciality())
         const response = await fetch(speciality_url + speciality_id + "/modules/" + module_id, config)
         const json = await response.json()
         if (response.ok) {

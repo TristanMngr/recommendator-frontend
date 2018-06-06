@@ -33,9 +33,11 @@ class ModuleItem extends React.Component {
         const link_url = `/admin/module/${this.props.id}`
 
         const component = this.props.isMain != undefined ?
+            // it's on the speciality page, so we need to show the toggle and switch the is_main props
             <CustomItem editLink={link_url} deleteFunction={this.deleteElement.bind(this)} name={this.props.name}
                 description={this.props.description} switchIsMain={this.switchIsMain.bind(this)} isMain={this.state.is_main} />
             :
+            // it's not related to any spe
             <CustomItem editLink={link_url} deleteFunction={this.deleteElement.bind(this)} name={this.props.name}
                     description={this.props.description} />
 

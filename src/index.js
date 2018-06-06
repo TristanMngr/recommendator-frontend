@@ -4,8 +4,8 @@ import style from './scss/app.scss'
 import {Switch, Router, Route} from "react-router-dom"
 import Dashboard from './components/dashboard'
 import Login from './components/login'
-import Speciality from './components/admin/speciality'
-import Module from './components/admin/module'
+import SpecialityPage from './components/admin/speciality_page'
+import ModulePage from './components/admin/module_page'
 import Admin from './components/admin'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
@@ -43,8 +43,8 @@ class App extends React.Component {
                                     <AdminRoute path="/admin/speciality/:id" component={Speciality}/>
                                     <AdminRoute path="/admin/module/:id" component={Module}/>*/}
                                     <Route exact path="/admin" component={Admin}/>
-                                    <Route path="/admin/speciality/:id" component={Speciality}/>
-                                    <Route path="/admin/module/:id" component={Module}/>
+                                    <Route path="/admin/speciality/:id" component={SpecialityPage}/>
+                                    <Route path="/admin/module/:id" component={ModulePage}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

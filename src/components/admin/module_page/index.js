@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
 import Form from '../form'
 
-class Module extends React.Component {
+class ModulePage extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -65,4 +65,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Module))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ModulePage))

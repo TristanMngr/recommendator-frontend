@@ -14,6 +14,7 @@ export default class CustomItem extends React.Component {
 
     render() {
 
+        // if it is a module related to a spe, we need to show the toggle to update it is_main property
         const toggle = this.props.switchIsMain ? (
                 <div className="toggle">
                     <Checkbox onClick={this.props.switchIsMain} toggle
