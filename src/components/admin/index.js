@@ -2,6 +2,7 @@ import React from 'react'
 import style from './style.scss'
 import { getSpecialities } from '../../actions/speciality';
 import { getModules } from '../../actions/module';
+import { getConcepts } from '../../actions/concept';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import CustomList  from './custom_list'
@@ -16,6 +17,7 @@ class Admin extends React.Component {
     componentDidMount(){
         this.props.getSpecialities();
         this.props.getModules();
+        this.props.getConcepts();
     }
 
     render() {
@@ -41,6 +43,16 @@ class Admin extends React.Component {
 
         const form_modules = <Form method="post" type="modules" />;
 
+
+        const list_concepts = this.props.concepts ?
+                (   <div>
+                        <CustomList type="concepts" list={this.props.concepts} from="db" />
+                    </div>
+                ) :
+                '';
+
+        const form_concepts = <Form method="post" type="concepts" />;
+
         return(
             <div className={style.component}>
                 <div>
@@ -55,6 +67,12 @@ class Admin extends React.Component {
                     </div>
                     {this.props.modules && list_modules}
                 </div>
+                <div>
+                    <div className="add">
+                        <BigButton text="Ajouter un concept" hidden={form_concepts} />
+                    </div>
+                    {this.props.concepts && list_concepts}
+                </div>
             </div>
         )
     }
@@ -67,7 +85,10 @@ const mapStateToProps = state => {
         errorSpe: state.speciality.error,
         isModulesFetching: state.modules.isFetching,
         modules: state.modules.list,
-        errorModule: state.modules.error
+        errorModule: state.modules.error,
+        isConceptFetching: state.concepts.isFetching,
+        concepts: state.concepts.list,
+        errorConcept: state.concepts.error
     }
 }
 
@@ -78,6 +99,9 @@ const mapDispatchToProps = dispatch => {
         },
         getModules: () => {
             dispatch(getModules())
+        },
+        getConcepts: () => {
+            dispatch(getConcepts())
         }
     }
 }

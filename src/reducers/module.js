@@ -1,5 +1,6 @@
 import {REQUEST_MODULE, RECEIVE_MODULE, ERROR_MODULE, RECEIVE_MODULES, RECEIVE_ADD_CONCEPT_TO_MODULE,
-    RECEIVE_MODULE_IN_LIST, RECEIVE_DELETE_MODULE_FROM_LIST} from '../actions/module'
+    RECEIVE_MODULE_IN_LIST, RECEIVE_DELETE_MODULE_FROM_LIST, RECEIVE_DELETE_CONCEPT_FROM_MODULE,
+    REINIT_ERROR_MODULE } from '../actions/module'
 
 export default function module(state = {
     isFetching: false,
@@ -29,6 +30,17 @@ export default function module(state = {
                     ...state,
                     isFetching: false,
                     list: state.list.filter(elem => elem.id !== action.id)
+                }
+            case RECEIVE_DELETE_CONCEPT_FROM_MODULE:
+                return {
+                    ...state,
+                    isFetching: false,
+                    current: action.payload
+                }
+            case REINIT_ERROR_MODULE:
+                return {
+                    ...state,
+                    error: null
                 }
             default:
                 return state

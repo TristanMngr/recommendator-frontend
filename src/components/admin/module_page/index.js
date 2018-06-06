@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
 import Form from '../form'
+import CustomList from '../custom_list'
 
 class ModulePage extends React.Component {
     constructor(props) {
@@ -32,6 +33,10 @@ class ModulePage extends React.Component {
             component = (
                 <div>
                     <h1>{this.props.module.name}</h1>
+
+                    <CustomList type="concepts" list={this.props.module.concepts}
+                        from="module" />
+
                     <div className="actions">
                         <BigButton text="Modifier les informations du module" hidden={putForm} />
                         <BigButton text="Ajouter un concept" hidden={addForm} />

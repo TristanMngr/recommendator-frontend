@@ -71,7 +71,7 @@ const mapStateToProps = state => {
     return {
         isFetching: state.speciality.isFetching,
         module: state.modules.current,
-        concepts: state.concepts.data,
+        concepts: state.concepts.list,
         error: state.speciality.error
     }
 }

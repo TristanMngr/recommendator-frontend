@@ -35,7 +35,7 @@ class ModulePutForm extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <PutForm type="modules" fields={this.state} submitForm={this.submitForm.bind(this)}
+                <PutForm fields={this.state} submitForm={this.submitForm.bind(this)}
                     updateInfo={this.updateInfo.bind(this)} isFetching={this.props.isFetching} />
                 <ErrorMessage error={this.props.error} />
             </React.Fragment>

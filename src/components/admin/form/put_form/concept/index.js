@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateSpeciality } from '../../../../../actions/speciality';
+import { updateConcept } from '../../../../../actions/concept';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import ErrorMessage from '../../error_message'
@@ -9,15 +9,14 @@ import PutForm from '../../put_form'
 const INITIAL_STATE = (name, desc) => {
     return {
         name: name,
-        description: desc,
     }
 }
 
-class SpecialityPutForm extends React.Component {
+class ConceptPutForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = INITIAL_STATE(this.props.speciality.name, this.props.speciality.description);
+        this.state = INITIAL_STATE(this.props.concept.name);
     }
 
     updateInfo(e){
@@ -29,7 +28,7 @@ class SpecialityPutForm extends React.Component {
     submitForm(e){
             e.preventDefault()
             if (!this.props.isFetching)
-                this.props.put(this.state, this.props.speciality.id);
+                this.props.put(this.state, this.props.concept.id);
     }
 
     render() {
@@ -45,18 +44,18 @@ class SpecialityPutForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        isFetching: state.speciality.isFetching,
-        speciality: state.speciality.current,
-        error: state.speciality.error
+        isFetching: state.concepts.isFetching,
+        concept: state.concepts.current,
+        error: state.concepts.error
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         put: (infos, id) => {
-            dispatch(updateSpeciality(infos, id))
+            dispatch(updateConcept(infos, id))
         }
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SpecialityPutForm))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConceptPutForm))

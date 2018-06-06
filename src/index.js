@@ -6,6 +6,7 @@ import Dashboard from './components/dashboard'
 import Login from './components/login'
 import SpecialityPage from './components/admin/speciality_page'
 import ModulePage from './components/admin/module_page'
+import ConceptPage from './components/admin/concept_page'
 import Admin from './components/admin'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
@@ -40,11 +41,13 @@ class App extends React.Component {
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
                                     {/*<AdminRoute exact path="/admin" component={Admin}/>
-                                    <AdminRoute path="/admin/speciality/:id" component={Speciality}/>
-                                    <AdminRoute path="/admin/module/:id" component={Module}/>*/}
+                                    <AdminRoute path="/admin/speciality/:id" component={SpecialityPage}/>
+                                    <AdminRoute path="/admin/module/:id" component={ModulePage}/>
+                                    <AdminRoute path="/admin/concept/:id" component={ConceptPage}/>*/}
                                     <Route exact path="/admin" component={Admin}/>
                                     <Route path="/admin/speciality/:id" component={SpecialityPage}/>
                                     <Route path="/admin/module/:id" component={ModulePage}/>
+                                    <Route path="/admin/concept/:id" component={ConceptPage}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

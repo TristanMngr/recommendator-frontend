@@ -8,8 +8,10 @@ export const ERROR_MODULE = 'ERROR_MODULE'
 export const RECEIVE_MODULE = 'RECEIVE_MODULE'
 export const RECEIVE_MODULES = 'RECEIVE_MODULES'
 export const RECEIVE_ADD_CONCEPT_TO_MODULE = 'RECEIVE_ADD_CONCEPT_TO_MODULE'
+export const RECEIVE_DELETE_CONCEPT_FROM_MODULE = 'RECEIVE_DELETE_CONCEPT_FROM_MODULE'
 export const RECEIVE_MODULE_IN_LIST = 'RECEIVE_MODULE_IN_LIST'
 export const RECEIVE_DELETE_MODULE_FROM_LIST = 'RECEIVE_DELETE_MODULE_FROM_LIST'
+export const REINIT_ERROR_MODULE = 'REINIT_ERROR_MODULE'
 
 export function receiveModules(payload) {
     return {
@@ -59,6 +61,26 @@ export function receiveAddConceptToModule(payload) {
     }
 }
 
+export function receiveDeleteConceptFromModule(payload) {
+    return {
+        type: RECEIVE_DELETE_CONCEPT_FROM_MODULE,
+        payload
+    }
+}
+
+export function reinitErrorModule(){
+    return {
+        type: REINIT_ERROR_MODULE
+    }
+}
+
+const handleError = (dispatch, message) => {
+    dispatch(errorModule(message))
+    setTimeout(() => {
+        dispatch(reinitErrorModule())
+    }, 5000)
+}
+
 export function getModules() {
     return async dispatch => {
         dispatch(requestModule)
@@ -69,7 +91,7 @@ export function getModules() {
             dispatch(receiveModules(json))
         }
         else {
-            dispatch(errorModule(json.message))
+            handleError(dispatch, json.message)
         }
 
     }
@@ -85,7 +107,7 @@ export function getModule(module_id) {
             dispatch(receiveModule(json))
         }
         else {
-            dispatch(errorModule(json.message))
+            handleError(dispatch, json.message)
         }
 
     }
@@ -109,7 +131,7 @@ export function updateModule(infos, id) {
             dispatch(receiveModule(json))
         }
         else {
-            dispatch(errorModule(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -135,7 +157,7 @@ export function addModuleToList(infos) {
             dispatch(receiveModuleInList(json))
         }
         else {
-            dispatch(errorModule(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -158,7 +180,7 @@ export function deleteModule(module_id) {
             dispatch(deleteModuleFromList(json.id))
         }
         else {
-            dispatch(errorModule(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -182,7 +204,29 @@ export function addConceptToModule(infos) {
             dispatch(receiveAddConceptToModule(json))
         }
         else {
-            dispatch(errorModule(json.message))
+            handleError(dispatch, json.message)
+        }
+        return false
+    }
+}
+
+export function deleteConceptFromModule(module_id, concept_id) {
+    let config = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        }
+    }
+
+    return async dispatch => {
+        dispatch(requestModule())
+        const response = await fetch(module_url + module_id + "/concepts/" + concept_id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(receiveDeleteConceptFromModule(json))
+        }
+        else {
+            handleError(dispatch, json.message)
         }
         return false
     }

@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './style.scss'
-import CustomItem from './custom_item'
 import SpecialityItem from './custom_item/speciality'
 import ModuleItem from './custom_item/module'
+import ConceptItem from './custom_item/concept'
 
 export default class CustomList extends React.Component {
     constructor(props) {
@@ -22,6 +22,8 @@ export default class CustomList extends React.Component {
         const SPECIALITIES = this.props.type === "specialities" && this.props.from === "db";
         const MODULES = this.props.type === "modules" && this.props.from === "db";
         const MODULES_IN_SPECIALITY = this.props.type === "modules" && this.props.from === "speciality";
+        const CONCEPTS = this.props.type === "concepts" && this.props.from === "db";
+        const CONCEPTS_IN_MODULE = this.props.type === "concepts" && this.props.from === "module";
 
         let component;
 
@@ -50,6 +52,15 @@ export default class CustomList extends React.Component {
                     return <ModuleItem key={elem+i} name={elem.module.name}
                         description={elem.module.description} id={elem.module.id}
                         isMain={elem.mainModule} />
+                }
+            );
+        }
+        else if (CONCEPTS || CONCEPTS_IN_MODULE) {
+            component = this.props.list.sort((first, second) => first.id > second.id)
+            .map(
+                (elem, i) => {
+                    return <ConceptItem key={elem+i} name={elem.name} id={elem.id}
+                        deleteFrom={this.props.from === "module"} />
                 }
             );
         }
