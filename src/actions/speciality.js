@@ -11,6 +11,7 @@ export const RECEIVE_DELETE_MODULE_FROM_SPECIALITY = 'RECEIVE_DELETE_MODULE_FROM
 export const RECEIVE_SPECIALITIES = 'RECEIVE_SPECIALITIES'
 export const RECEIVE_ADD_MODULE_TO_SPECIALITY = 'RECEIVE_ADD_MODULE_TO_SPECIALITY'
 export const RECEIVE_DELETE_SPECIALITY_FROM_LIST = 'RECEIVE_DELETE_SPECIALITY_FROM_LIST'
+export const REINIT_ERROR_SPECIALITY = 'REINIT_ERROR_SPECIALITY'
 
 export function requestSpeciality() {
     return {
@@ -67,6 +68,19 @@ export function receiveDeleteModuleFromSpeciality(payload) {
     }
 }
 
+export function reinitErrorSpeciality(){
+    return {
+        type: REINIT_ERROR_SPECIALITY
+    }
+}
+
+// used to show error, and delete it after 5 seconds
+const handleError = (dispatch, message) => {
+    dispatch(errorSpeciality(message))
+    setTimeout(() => {
+        dispatch(reinitErrorSpeciality())
+    }, 5000)
+}
 
 export function getSpeciality(speciality_id) {
     return async dispatch => {
@@ -78,7 +92,7 @@ export function getSpeciality(speciality_id) {
             dispatch(receiveSpeciality(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
         }
 
     }
@@ -94,7 +108,7 @@ export function getSpecialities() {
             dispatch(receiveSpecialities(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
         }
 
     }
@@ -117,7 +131,7 @@ export function updateSpeciality(infos, id) {
             dispatch(receiveSpeciality(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -141,7 +155,7 @@ export function addSpecialityToList(infos) {
             dispatch(receiveSpecialityInList(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -164,7 +178,7 @@ export function deleteSpeciality(speciality_id) {
             dispatch(deleteSpecialityFromList(json.id))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -177,18 +191,18 @@ export function addModuleToSpeciality(infos) {
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
         'Authorization': localStorage.getItem('id_token')
         },
-        body: `module_id=${infos.toAdd_id}&is_main=${infos.is_main}`
+        body: `module_id=${infos.module_id}&is_main=${infos.is_main}`
     }
 
     return async dispatch => {
         dispatch(requestSpeciality)
-        const response = await fetch(speciality_url + infos.object_id + "/modules", config)
+        const response = await fetch(speciality_url + infos.speciality_id + "/modules", config)
         const json = await response.json()
         if (response.ok) {
             dispatch(receiveAddModuleToSpeciality(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
         }
         return false
     }
@@ -210,7 +224,7 @@ export function deleteModuleFromSpeciality(speciality_id, module_id) {
             dispatch(receiveDeleteModuleFromSpeciality(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false
@@ -234,7 +248,7 @@ export function updateMainModuleFromSpeciality(speciality_id, module_id, is_main
             dispatch(receiveSpeciality(json))
         }
         else {
-            dispatch(errorSpeciality(json.message))
+            handleError(dispatch, json.message)
 
         }
         return false

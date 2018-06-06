@@ -171,12 +171,12 @@ export function addConceptToModule(infos) {
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
         'Authorization': localStorage.getItem('id_token')
         },
-        body: `concept_id=${infos.toAdd_id}`
+        body: `concept_id=${infos.concept_id}`
     }
 
     return async dispatch => {
         dispatch(requestModule())
-        const response = await fetch(module_url + infos.object_id + "/concepts", config)
+        const response = await fetch(module_url + infos.module_id + "/concepts", config)
         const json = await response.json()
         if (response.ok) {
             dispatch(receiveAddConceptToModule(json))

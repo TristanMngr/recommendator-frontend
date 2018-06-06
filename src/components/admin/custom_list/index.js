@@ -1,6 +1,8 @@
 import React from 'react'
 import style from './style.scss'
 import CustomItem from './custom_item'
+import SpecialityItem from './custom_item/speciality'
+import ModuleItem from './custom_item/module'
 
 export default class CustomList extends React.Component {
     constructor(props) {
@@ -17,21 +19,37 @@ export default class CustomList extends React.Component {
     }
 
     render() {
+        const SPECIALITIES = this.props.type === "specialities" && this.props.from === "db";
+        const MODULES = this.props.type === "modules" && this.props.from === "db";
+        const MODULES_IN_SPECIALITY = this.props.type === "modules" && this.props.from === "speciality";
+
         let component;
-        if (this.props.list && !this.props.specialityModules) {
-            component = this.props.list.map(
+
+        if (SPECIALITIES) {
+            component = this.props.list.sort((first, second) => first.id > second.id)
+            .map(
                 (elem, i) => {
-                    return <CustomItem key={this.props.type+elem.id} type={this.props.type}
-                        name={elem.name} description={elem.description} entityId={elem.id}/>
+                    return <SpecialityItem key={elem+i} name={elem.name}
+                        description={elem.description} id={elem.id} />
                 }
             );
         }
-        else if (this.props.list && this.props.specialityModules) {
-            component = this.props.list.map(
+        else if (MODULES) {
+            component = this.props.list.sort((first, second) => first.id > second.id)
+            .map(
                 (elem, i) => {
-                    return <CustomItem key={this.props.type+elem.module.id} type={this.props.type}
-                        name={elem.module.name} description={elem.module.description} entityId={elem.module.id}
-                        deleteFrom={this.props.deleteFrom} isMain={elem.mainModule} />
+                    return <ModuleItem key={elem+i} name={elem.name}
+                        description={elem.description} id={elem.id} />
+                }
+            );
+        }
+        else if (MODULES_IN_SPECIALITY) {
+            component = this.props.list.sort((first, second) => first.id > second.id)
+            .map(
+                (elem, i) => {
+                    return <ModuleItem key={elem+i} name={elem.module.name}
+                        description={elem.module.description} id={elem.module.id}
+                        isMain={elem.mainModule} />
                 }
             );
         }

@@ -24,7 +24,7 @@ class Admin extends React.Component {
 
         const list_specialities = this.props.specialities ?
             (   <div>
-                    <CustomList type="specialities" list={this.props.specialities} />
+                    <CustomList type="specialities" list={this.props.specialities} from="db" />
                 </div>
             ) :
             '';
@@ -34,7 +34,7 @@ class Admin extends React.Component {
 
         const list_modules = this.props.modules ?
             (   <div>
-                    <CustomList type="modules" list={this.props.modules} />
+                    <CustomList type="modules" list={this.props.modules} from="db" />
                 </div>
             ) :
             '';

@@ -1,6 +1,6 @@
 import {REQUEST_SPECIALITY, RECEIVE_SPECIALITY, ERROR_SPECIALITY, RECEIVE_ADD_MODULE_TO_SPECIALITY,
     RECEIVE_SPECIALITIES, RECEIVE_SPECIALITY_IN_LIST, RECEIVE_DELETE_SPECIALITY_FROM_LIST,
-    RECEIVE_DELETE_MODULE_FROM_SPECIALITY } from '../actions/speciality'
+    RECEIVE_DELETE_MODULE_FROM_SPECIALITY, REINIT_ERROR_SPECIALITY } from '../actions/speciality'
 
 export default function speciality(state = {
     isFetching: false,
@@ -36,6 +36,11 @@ export default function speciality(state = {
                     ...state,
                     isFetching: false,
                     current: action.payload
+                }
+            case REINIT_ERROR_SPECIALITY:
+                return {
+                    ...state,
+                    error: null
                 }
             default:
                 return state

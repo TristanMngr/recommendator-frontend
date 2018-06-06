@@ -34,7 +34,7 @@ class Speciality extends React.Component {
                     <h1>{this.props.speciality.name}</h1>
 
                     <CustomList type="modules" list={this.props.speciality.specialityModules}
-                        specialityModules={true} deleteFrom={this.props.speciality.id} />
+                        from="speciality" />
 
                     <div className="actions">
                         <BigButton text="Modifier les informations du parcours" hidden={putForm} />
