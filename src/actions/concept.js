@@ -162,3 +162,4 @@ export function addConceptToList(infos) {
         return false
     }
 }
+
