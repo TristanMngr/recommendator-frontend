@@ -37,3 +37,12 @@ $link-color: #616e8b;
 .ui.form .field > label {
     color: $grey;
 }
+
+/* LOADER */
+.ui.loader {
+    color: $link-color;
+}
+
+.ui.loader:after {
+        border-color: $link-color transparent transparent;
+}
