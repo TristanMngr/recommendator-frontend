@@ -65,9 +65,24 @@ const handleError = (dispatch, message) => {
     }, 5000)
 }
 
+export function getConcept(concept_id) {
+    return async dispatch => {
+        dispatch(requestConcept())
+        const response = await fetch(concept_url + concept_id)
+        const json = await response.json()
+        if (response.ok) {
+            console.log(json)
+            dispatch(receiveConcept(json))
+        }
+        else {
+            handleError(dispatch, json.message)
+        }
+    }
+}
+
 export function getConcepts() {
     return async dispatch => {
-        dispatch(requestConcepts())
+        dispatch(requestConcept())
         const response = await fetch(concept_url)
         const json = await response.json()
         if (response.ok) {
@@ -76,6 +91,29 @@ export function getConcepts() {
         else {
             handleError(dispatch, json.message)
         }
+    }
+}
+
+export function updateConcept(infos, id) {
+    let config = {
+        method: 'PUT',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        },
+        body: `name=${infos.name}`
+    }
+
+    return async dispatch => {
+        dispatch(requestConcept())
+        const response = await fetch(concept_url + id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(receiveConcept(json))
+        }
+        else {
+            handleError(dispatch, json.message)
+        }
+        return false
     }
 }
 
