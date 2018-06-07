@@ -1,14 +1,26 @@
 import config from '../config'
 
-const concept_url = `${config.api_url}/concepts`
+const concept_url = `${config.api_url}/concepts/`
 
-export const REQUEST_CONCEPTS = 'REQUEST_CONCEPTS'
+export const REQUEST_CONCEPT = 'REQUEST_CONCEPT'
+export const ERROR_CONCEPT = 'ERROR_CONCEPT'
+
 export const RECEIVE_CONCEPTS = 'RECEIVE_CONCEPTS'
-export const ERROR_CONCEPTS = 'ERROR_CONCEPTS'
+export const RECEIVE_CONCEPT = 'RECEIVE_CONCEPT'
+export const REINIT_ERROR_CONCEPT = 'REINIT_ERROR_CONCEPT'
+export const RECEIVE_DELETE_CONCEPT_FROM_LIST = 'RECEIVE_DELETE_CONCEPT_FROM_LIST'
+export const RECEIVE_CONCEPT_IN_LIST = 'RECEIVE_CONCEPT_IN_LIST'
 
-export function requestConcepts() {
+export function requestConcept() {
     return {
-        type: REQUEST_CONCEPTS
+        type: REQUEST_CONCEPT
+    }
+}
+
+export function receiveConcept(payload) {
+    return {
+        type: RECEIVE_CONCEPT,
+        payload
     }
 }
 
@@ -19,24 +31,135 @@ export function receiveConcepts(payload) {
     }
 }
 
-export function errorConcepts(message) {
+export function receiveConceptInList(payload) {
     return {
-        type: ERROR_CONCEPTS,
+        type: RECEIVE_CONCEPT_IN_LIST,
+        payload
+    }
+}
+
+export function errorConcept(message) {
+    return {
+        type: ERROR_CONCEPT,
         message
     }
 }
 
+export function deleteConceptFromList(id) {
+    return {
+        type: RECEIVE_DELETE_CONCEPT_FROM_LIST,
+        id
+    }
+}
+
+export function reinitErrorConcept() {
+    return {
+        type: REINIT_ERROR_CONCEPT
+    }
+}
+
+const handleError = (dispatch, message) => {
+    dispatch(errorConcept(message))
+    setTimeout(() => {
+        dispatch(reinitErrorConcept())
+    }, 5000)
+}
+
 export function getConcepts() {
     return async dispatch => {
-        dispatch(requestConcepts)
+        dispatch(requestConcept())
         const response = await fetch(concept_url)
         const json = await response.json()
         if (response.ok) {
             console.log(json)
+            dispatch(receiveConcepts(json))
         }
         else {
-            dispatch(errorConcepts(json.message))
+            dispatch(errorConcept(json.message))
         }
+    }
+}
 
+export function updateConcept(infos, id) {
+    let config = {
+        method: 'PUT',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        },
+        body: `name=${infos.name}`
+    }
+
+    return async dispatch => {
+        dispatch(requestConcept())
+        const response = await fetch(concept_url + id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(receiveConcept(json))
+        }
+        else {
+            handleError(dispatch, json.message)
+        }
+        return false
+    }
+}
+
+export function getConcept(concept_id) {
+    return async dispatch => {
+        dispatch(requestConcept())
+        const response = await fetch(concept_url + concept_id)
+        const json = await response.json()
+        if (response.ok) {
+            console.log(json)
+            dispatch(receiveConcept(json))
+        }
+        else {
+            handleError(dispatch, json.message)
+        }
+    }
+}
+
+export function deleteConcept(concept_id) {
+    let config = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        }
+    }
+
+    return async dispatch => {
+        dispatch(requestConcept())
+        const response = await fetch(concept_url + concept_id, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(deleteConceptFromList(json.id))
+        }
+        else {
+            handleError(dispatch, json.message)
+
+        }
+        return false
+    }
+}
+
+export function addConceptToList(infos) {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id_token')
+        },
+        body: `name=${infos.name}`
+    }
+
+    return async dispatch => {
+        dispatch(requestConcept())
+        const response = await fetch(concept_url, config)
+        const json = await response.json()
+        if (response.ok) {
+            dispatch(receiveConceptInList(json))
+        }
+        else {
+            handleError(dispatch, json.message)
+        }
+        return false
     }
 }

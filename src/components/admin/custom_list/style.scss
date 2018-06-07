@@ -1,0 +1,55 @@
+:local(.component) {
+    $padding: 10px;
+    $background: #1e2329;
+    $grey: #b3b3b3;
+    $link-color: #616e8b;
+
+    ul {
+        background: $background;
+    }
+
+    li {
+        padding: $padding;
+        .name {
+            flex: 1;
+        }
+        .description {
+            flex:3;
+            color: $grey;
+        }
+    }
+
+    .line {
+        display: flex;
+        justify-content: left;
+    }
+
+        .buttons {
+            display:inline-flex;
+            a {
+                padding-top: 1px;
+                text-decoration: none;
+                color: $link-color;
+            }
+            a:hover {
+                color: $grey;
+                transition: all 0.3s ease;
+            }
+
+            .trash-btn {
+                margin-left: 10px;
+                cursor: pointer;
+                color: $link-color;
+
+            }
+            .trash-btn:hover {
+                color: $grey;
+                transition: all 0.3s ease;
+            }
+        }
+
+        .toggle {
+            flex:2;
+        }
+
+}
