@@ -40,14 +40,10 @@ class App extends React.Component {
                             <Switch location={location}>
                                     <Route exact path="/" component={Login} />
                                     <PrivateRoute path="/dashboard" component={Dashboard}/>
-                                    {/*<AdminRoute exact path="/admin" component={Admin}/>
+                                    <AdminRoute exact path="/admin" component={Admin}/>
                                     <AdminRoute path="/admin/speciality/:id" component={SpecialityPage}/>
                                     <AdminRoute path="/admin/module/:id" component={ModulePage}/>
-                                    <AdminRoute path="/admin/concept/:id" component={ConceptPage}/>*/}
-                                    <Route exact path="/admin" component={Admin}/>
-                                    <Route path="/admin/speciality/:id" component={SpecialityPage}/>
-                                    <Route path="/admin/module/:id" component={ModulePage}/>
-                                    <Route path="/admin/concept/:id" component={ConceptPage}/>
+                                    <AdminRoute path="/admin/concept/:id" component={ConceptPage}/>
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

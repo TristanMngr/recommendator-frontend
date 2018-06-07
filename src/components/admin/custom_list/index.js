@@ -60,7 +60,7 @@ export default class CustomList extends React.Component {
             .map(
                 (elem, i) => {
                     return <ConceptItem key={elem+i} name={elem.name} id={elem.id}
-                        deleteFrom={this.props.from === "module"} />
+                        deleteFrom={CONCEPTS_IN_MODULE} />
                 }
             );
         }
