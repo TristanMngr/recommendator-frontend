@@ -28,11 +28,11 @@ export function errorConcepts(message) {
 
 export function getConcepts() {
     return async dispatch => {
-        dispatch(requestConcepts)
+        dispatch(requestConcepts())
         const response = await fetch(concept_url)
         const json = await response.json()
         if (response.ok) {
-            console.log(json)
+            dispatch(receiveConcepts(json))
         }
         else {
             dispatch(errorConcepts(json.message))
