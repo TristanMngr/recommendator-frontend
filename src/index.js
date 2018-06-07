@@ -9,13 +9,14 @@ import ModulePage from './components/admin/module_page'
 import ConceptPage from './components/admin/concept_page'
 import Admin from './components/admin'
 import {createStore, applyMiddleware, compose} from 'redux'
-import {Provider} from 'react-redux'
+import {Provider, connect} from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import Reducer from './reducers/combine'
 import history from './history'
 import PrivateRoute from './privateroutes'
 import AdminRoute from './adminroutes'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import { getUser } from './actions/login'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
@@ -23,13 +24,16 @@ const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddlew
 
 class App extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
+    componentDidMount(){
+        if (localStorage.getItem("id_token"))
+            store.dispatch(getUser(localStorage.getItem("id_token")))
+    }
 
     render() {
-
         return(
             <Provider store={store}>
                 <Router history={history}>
