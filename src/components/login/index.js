@@ -27,11 +27,10 @@ class Login extends React.Component {
     }
 
     async formSubmit(e) {
-        if (e.which === 13) {
-            e.preventDefault()
-            this.props.auth({username: this.state.email, password: this.state.password})
-        }
+        e.preventDefault()
+        this.props.auth({username: this.state.email, password: this.state.password})
     }
+    
     render() {
         const error = this.props.error ? <div>{this.props.error}</div> : ""
         const loader_div = (
@@ -51,7 +50,7 @@ class Login extends React.Component {
         <h1>The Recommendator</h1>
         {loader}
         {error}
-        <form onKeyPress={this.formSubmit.bind(this)} className="login-form" onSubmit={this.formSubmit}>
+        <form className="login-form">
             <AnimatedInput name="username" text="Username" icon={user_icon} value_callback={this.updateEmail.bind(this)}/>
             <AnimatedInput name="password" text="Password" icon={password_icon} password value_callback={this.updatePassword.bind(this)} />
             <button onClick={this.formSubmit.bind(this)} className="submit">LOGIN</button>
@@ -62,7 +61,7 @@ class Login extends React.Component {
         return(
 
                 component
-            
+
             )
     }
 }
