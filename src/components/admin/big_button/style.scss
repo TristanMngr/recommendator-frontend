@@ -1,0 +1,20 @@
+:local(.component){
+    $padding: 15px;
+
+    .big-btn {
+        cursor: pointer;
+        margin-bottom: $padding;
+        margin-top: $padding;
+        background:#323b50;
+        padding: $padding;
+    }
+
+    .big-btn:hover {
+        background: #1e2329;
+        transition: all ease 0.3s;
+    }
+
+    .hidden {
+        margin-bottom: $padding;
+    }
+}
