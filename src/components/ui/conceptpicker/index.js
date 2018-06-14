@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Concept from './concept'
-import {getConcepts} from '../../actions/concept'
+import {getConcepts} from '../../../actions/concept'
 import {Button} from 'semantic-ui-react'
-import {getForm1Responses} from '../../actions/form'
-import Loader from '../ui/loader'
+import {getForm1Responses} from '../../../actions/form'
+import Loader from './../loader'
 class ConceptPicker extends React.Component {
 
     constructor(props) {

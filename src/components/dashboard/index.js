@@ -1,5 +1,4 @@
 import React from 'react'
-import ConceptPicker from '../conceptpicker'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import LogoutButton from '../ui/logout_button'
@@ -14,17 +13,13 @@ class Dashboard extends React.Component {
                 <h1>Welcome on Dashboard</h1>
 
                 <Link to="/admin">test admin route</Link>
-                
+                <Link to="/discover/parcours">Form1</Link>
                 <LogoutButton />
             </div>
         )
     }
 }
 
-const MapStateToProps = state =>  {
-    return {
-    specialities: state.speciality.list,
-    }
-}
 
-export default connect(MapStateToProps, null)(Dashboard)
+
+export default Dashboard

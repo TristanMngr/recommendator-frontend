@@ -19,10 +19,22 @@ import PrivateRoute from './privateroutes'
 import AdminRoute from './adminroutes'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
 import { getUser } from './actions/login'
+import FormParcours from './components/form_parcours'
+import Error404 from './components/404'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
 
+const DiscoverForm = ({match, location}) => {
+    return(
+    <div>
+        <Switch location={location}>
+            <Route path={`${match.url}/parcours`} component={FormParcours} />
+            <Route component={Error404} />
+        </Switch>
+    </div>)
+
+}
 
 class App extends React.Component {
 
@@ -62,11 +74,13 @@ class App extends React.Component {
                         <Switch location={location}>
                                 <Route exact path="/" component={Login} />
                                 <PrivateRoute path="/dashboard" component={Dashboard}/>
+                                <PrivateRoute path="/discover/" component={DiscoverForm}/>
                                 <AdminRoute exact path="/admin" component={Admin}/>
                                 <AdminRoute path="/admin/speciality/:id" component={SpecialityPage}/>
                                 <AdminRoute path="/admin/module/:id" component={ModulePage}/>
                                 <AdminRoute path="/admin/concept/:id" component={ConceptPage}/>
                                 <AdminRoute path="/admin/job/:id" component={JobPage}/>
+                                <Route component={Error404} />
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>
