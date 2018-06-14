@@ -86,7 +86,7 @@ class Admin extends React.Component {
                 </div>
                 <div>
                     <div className="add">
-                        <BigButton text="Ajouter un job" hidden={form_jobs} />
+                        <BigButton text="Ajouter un métier" hidden={form_jobs} />
                     </div>
                     {this.props.jobs && list_jobs}
                 </div>

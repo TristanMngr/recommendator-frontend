@@ -26,6 +26,7 @@ export default class CustomList extends React.Component {
         const CONCEPTS = this.props.type === "concepts" && this.props.from === "db";
         const CONCEPTS_IN_MODULE = this.props.type === "concepts" && this.props.from === "module";
         const JOBS = this.props.type === "jobs" && this.props.from === "db";
+        const JOBS_IN_SPECIALITY = this.props.type === "jobs" && this.props.from === "speciality";
 
         let component;
 
@@ -66,12 +67,12 @@ export default class CustomList extends React.Component {
                 }
             );
         }
-        else if (JOBS) {
+        else if (JOBS || JOBS_IN_SPECIALITY) {
             component = this.props.list.sort((first, second) => first.id > second.id)
             .map(
                 (elem, i) => {
                     return <JobItem key={elem+i} name={elem.name} id={elem.id}
-                        description={elem.description} />
+                        description={elem.description} deleteFrom={JOBS_IN_SPECIALITY} />
                 }
             )
 

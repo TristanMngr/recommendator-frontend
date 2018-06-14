@@ -10,6 +10,7 @@ import ConceptPutForm from './put_form/concept'
 import JobPutForm from './put_form/job'
 import AddModuleToSpecialityForm from './add_form/add_module_to_speciality'
 import AddConceptToModuleForm from './add_form/add_concept_to_module'
+import AddJobToSpecialityForm from './add_form/add_job_to_speciality'
 
 export default class Form extends React.Component {
 
@@ -51,6 +52,8 @@ export default class Form extends React.Component {
                     form = <AddModuleToSpecialityForm />
                 else if (MODULE)
                     form = <AddConceptToModuleForm />
+                else if (JOB)
+                    form = <AddJobToSpecialityForm />
                 break;
         }
 

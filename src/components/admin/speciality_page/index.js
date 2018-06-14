@@ -19,15 +19,19 @@ class SpecialityPage extends React.Component {
     render() {
 
         let putForm = '';
-        let addForm = '';
+        let addModuleForm = '';
+        let addJobForm = '';
         let component = '';
 
         if (this.props.speciality){
             putForm =
             <Form method="put" type="specialities" object={this.props.speciality} />
 
-            addForm =
+            addModuleForm =
             <Form method="add" type="specialities" object={this.props.speciality} />
+
+            addJobForm =
+            <Form method="add" type="jobs" object={this.props.speciality} />
 
             component = (
                 <div>
@@ -36,9 +40,13 @@ class SpecialityPage extends React.Component {
                     <CustomList type="modules" list={this.props.speciality.specialityModules}
                         from="speciality" />
 
+                    <CustomList type="jobs" list={this.props.speciality.jobs}
+                        from="speciality" />
+
                     <div className="actions">
                         <BigButton text="Modifier les informations du parcours" hidden={putForm} />
-                        <BigButton text="Ajouter un cours" hidden={addForm} />
+                        <BigButton text="Ajouter un cours" hidden={addModuleForm} />
+                        <BigButton text="Ajouter un métier" hidden={addJobForm} />
                     </div>
                 </div>
             );

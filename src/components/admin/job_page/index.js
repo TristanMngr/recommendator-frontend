@@ -34,7 +34,7 @@ class JobPage extends React.Component {
                         from="job" />
 
                     <div className="actions">
-                        <BigButton text="Modifier les informations du job" hidden={putForm} />
+                        <BigButton text="Modifier les informations du métier" hidden={putForm} />
                     </div>
                 </div>
             );
