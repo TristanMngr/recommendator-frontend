@@ -10,7 +10,6 @@ class LogoutButton extends React.Component {
     }
 
     logOut(){
-        console.log("to");
         this.props.logOut();
     }
 

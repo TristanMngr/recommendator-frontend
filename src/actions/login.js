@@ -110,6 +110,6 @@ export function logoutUser() {
 
     return async dispatch => {
         dispatch(logOut())
-        localStorage.setItem("id_token", null)
+        localStorage.removeItem("id_token")
     }
 }
