@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import Concept from './concept'
 import {getConcepts} from '../../actions/concept'
 import {Button} from 'semantic-ui-react'
+import {getForm1Responses} from '../../actions/form'
+import Loader from '../ui/loader'
 class ConceptPicker extends React.Component {
 
     constructor(props) {
@@ -24,19 +26,19 @@ class ConceptPicker extends React.Component {
         }
     }
     render() {
-        const Loader = <div><p>Loading</p></div>
+        const LoaderComponent = <Loader/>
         const ConceptDiv = (
             <div className="container">
                 {this.props.concepts ? this.props.concepts.map(concept => <Concept id={concept.id} key={concept.id} text={concept.name} callback={(id) => this.updatePicked(id)}/>) : ""}
             </div>
         )
-        const Component = this.props.isFetching ? Loader : ConceptDiv
+        const Component = this.props.isFetching ? LoaderComponent : ConceptDiv
         return(
             <div>
                 Concepts
                 {Component}
                 <br/>
-                <Button>Submit</Button>
+                <Button onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
             </div>
         )
     }
@@ -54,6 +56,9 @@ const mapDispatchToProps = dispatch =>  {
     return {
         getConcepts: () => {
             dispatch(getConcepts())
+        },
+        submitForm: (ids) => {
+            dispatch(getForm1Responses(ids))
         }
     }
 }
