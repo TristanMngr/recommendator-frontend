@@ -8,6 +8,7 @@ import LoadingPage from './components/loading_page'
 import SpecialityPage from './components/admin/speciality_page'
 import ModulePage from './components/admin/module_page'
 import ConceptPage from './components/admin/concept_page'
+import JobPage from './components/admin/job_page'
 import Admin from './components/admin'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider, connect} from 'react-redux'
@@ -65,6 +66,7 @@ class App extends React.Component {
                                 <AdminRoute path="/admin/speciality/:id" component={SpecialityPage}/>
                                 <AdminRoute path="/admin/module/:id" component={ModulePage}/>
                                 <AdminRoute path="/admin/concept/:id" component={ConceptPage}/>
+                                <AdminRoute path="/admin/job/:id" component={JobPage}/>
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>

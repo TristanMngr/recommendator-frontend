@@ -3,6 +3,7 @@ import style from './style.scss'
 import { getSpecialities } from '../../actions/speciality';
 import { getModules } from '../../actions/module';
 import { getConcepts } from '../../actions/concept';
+import { getJobs } from '../../actions/job';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import CustomList  from './custom_list'
@@ -18,6 +19,7 @@ class Admin extends React.Component {
         this.props.getSpecialities();
         this.props.getModules();
         this.props.getConcepts();
+        this.props.getJobs();
     }
 
     render() {
@@ -53,6 +55,15 @@ class Admin extends React.Component {
 
         const form_concepts = <Form method="post" type="concepts" />;
 
+        const list_jobs = this.props.jobs ?
+                (   <div>
+                        <CustomList type="jobs" list={this.props.jobs} from="db" />
+                    </div>
+                ) :
+                '';
+
+        const form_jobs = <Form method="post" type="jobs" />
+
         return(
             <div className={style.component}>
                 <div>
@@ -73,6 +84,12 @@ class Admin extends React.Component {
                     </div>
                     {this.props.concepts && list_concepts}
                 </div>
+                <div>
+                    <div className="add">
+                        <BigButton text="Ajouter un job" hidden={form_jobs} />
+                    </div>
+                    {this.props.jobs && list_jobs}
+                </div>
             </div>
         )
     }
@@ -88,7 +105,10 @@ const mapStateToProps = state => {
         errorModule: state.modules.error,
         isConceptFetching: state.concepts.isFetching,
         concepts: state.concepts.list,
-        errorConcept: state.concepts.error
+        errorConcept: state.concepts.error,
+        isJobFetching: state.jobs.isFetching,
+        jobs: state.jobs.list,
+        errorJob: state.jobs.error
     }
 }
 
@@ -102,8 +122,12 @@ const mapDispatchToProps = dispatch => {
         },
         getConcepts: () => {
             dispatch(getConcepts())
+        },
+        getJobs: () => {
+            dispatch(getJobs())
         }
     }
 }
+
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Admin))
