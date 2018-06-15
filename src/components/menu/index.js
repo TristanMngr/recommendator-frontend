@@ -17,18 +17,24 @@ export default class MenuVert extends React.Component {
                 <Grid.Column width={3}>
                     <Menu inverted vertical>
                         <div className="color">
+                            <Link to="/dashboard">
                             <Menu.Item name='dashboard' active={activeItem === 'dashboard'} onClick={this.handleItemClick} >
-                                <Link to="/dashboard">Dashboard</Link>
-                                <Icon name='dashboard'/>
+                                Dashboard
+                                <Icon name='dropdown'/>
                             </Menu.Item>
+                            </Link>
+                            <Link to="/profil">
                             <Menu.Item name='user circle' active={activeItem === 'user circle'} onClick={this.handleItemClick}>
-                                <Link to="/profil">Profil</Link>
+                                Profil
                                 <Icon name='user circle'/>
                             </Menu.Item>
+                            </Link>
+                            <Link to="/FAQ">
                             <Menu.Item name='info' active={activeItem === 'info'} onClick={this.handleItemClick}>
-                                <Link to="/FAQ">FAQ</Link>
+                                FAQ
                                 <Icon name='info'/>
                             </Menu.Item>
+                            </Link>
                         </div>
 
                     </Menu>
@@ -37,4 +43,5 @@ export default class MenuVert extends React.Component {
         )
     }
 }
+
 
