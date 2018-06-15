@@ -1,5 +1,5 @@
 import React from 'react'
-import { logoutUser } from '../../actions/login'
+import { logoutUser } from '../../../actions/login'
 import { connect } from 'react-redux'
 import {withRouter, Redirect} from 'react-router-dom'
 

@@ -3,6 +3,7 @@ import style from './style.scss'
 import SpecialityItem from './custom_item/speciality'
 import ModuleItem from './custom_item/module'
 import ConceptItem from './custom_item/concept'
+import JobItem from './custom_item/job'
 
 export default class CustomList extends React.Component {
     constructor(props) {
@@ -24,6 +25,8 @@ export default class CustomList extends React.Component {
         const MODULES_IN_SPECIALITY = this.props.type === "modules" && this.props.from === "speciality";
         const CONCEPTS = this.props.type === "concepts" && this.props.from === "db";
         const CONCEPTS_IN_MODULE = this.props.type === "concepts" && this.props.from === "module";
+        const JOBS = this.props.type === "jobs" && this.props.from === "db";
+        const JOBS_IN_SPECIALITY = this.props.type === "jobs" && this.props.from === "speciality";
 
         let component;
 
@@ -63,6 +66,16 @@ export default class CustomList extends React.Component {
                         deleteFrom={CONCEPTS_IN_MODULE} />
                 }
             );
+        }
+        else if (JOBS || JOBS_IN_SPECIALITY) {
+            component = this.props.list.sort((first, second) => first.id > second.id)
+            .map(
+                (elem, i) => {
+                    return <JobItem key={elem+i} name={elem.name} id={elem.id}
+                        description={elem.description} deleteFrom={JOBS_IN_SPECIALITY} />
+                }
+            )
+
         }
 
         return(

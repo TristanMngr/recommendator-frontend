@@ -1,34 +1,35 @@
-import {REQUEST_CONCEPT, RECEIVE_CONCEPTS, ERROR_CONCEPT,
-    REINIT_ERROR_CONCEPT, RECEIVE_DELETE_CONCEPT_FROM_LIST, RECEIVE_CONCEPT_IN_LIST, RECEIVE_CONCEPT
-    } from '../actions/concept'
+import { REQUEST_JOB, RECEIVE_JOB, ERROR_JOB, REINIT_ERROR_JOB, RECEIVE_JOB_IN_LIST, RECEIVE_DELETE_JOB_FROM_LIST,
+    RECEIVE_JOBS
+} from '../actions/job'
 
-export default function concepts(state = {
+export default function job(state = {
     isFetching: false,
     list: null,
-    error: null
+    error: null,
+    current: null
     }, action) {
         switch(action.type) {
-            case REQUEST_CONCEPT:
+            case REQUEST_JOB:
                 return  {...state, isFetching: true}
-            case RECEIVE_CONCEPT:
+            case RECEIVE_JOB:
                 return {...state, isFetching: false, current: action.payload}
-            case RECEIVE_CONCEPTS:
-                return  {...state, isFetching: false, list: action.payload}
-            case ERROR_CONCEPT:
+            case RECEIVE_JOBS:
+                return {...state, isFetching: false, list: action.payload}
+            case ERROR_JOB:
                 return {...state, isFetching: false, error: action.message}
-            case RECEIVE_CONCEPT_IN_LIST:
+            case RECEIVE_JOB_IN_LIST:
                 return {
                     ...state,
                     isFetching: false,
                     list: [...state.list, action.payload]
                 }
-            case RECEIVE_DELETE_CONCEPT_FROM_LIST:
+            case RECEIVE_DELETE_JOB_FROM_LIST:
                 return {
                     ...state,
                     isFetching: false,
                     list: state.list.filter(elem => elem.id !== action.id)
                 }
-            case REINIT_ERROR_CONCEPT:
+            case REINIT_ERROR_JOB:
                 return {
                     ...state,
                     error: null

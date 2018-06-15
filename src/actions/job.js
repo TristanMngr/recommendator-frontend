@@ -1,78 +1,78 @@
 import config from '../config'
 
-const concept_url = `${config.api_url}/concepts/`
+const job_url = `${config.api_url}/jobs/`
 
-export const REQUEST_CONCEPT = 'REQUEST_CONCEPT'
-export const ERROR_CONCEPT = 'ERROR_CONCEPT'
+export const REQUEST_JOB = 'REQUEST_JOB'
+export const ERROR_JOB = 'ERROR_JOB'
 
-export const RECEIVE_CONCEPTS = 'RECEIVE_CONCEPTS'
-export const RECEIVE_CONCEPT = 'RECEIVE_CONCEPT'
-export const REINIT_ERROR_CONCEPT = 'REINIT_ERROR_CONCEPT'
-export const RECEIVE_DELETE_CONCEPT_FROM_LIST = 'RECEIVE_DELETE_CONCEPT_FROM_LIST'
-export const RECEIVE_CONCEPT_IN_LIST = 'RECEIVE_CONCEPT_IN_LIST'
+export const RECEIVE_JOB = 'RECEIVE_JOB'
+export const RECEIVE_JOBS = 'RECEIVE_JOBS'
+export const REINIT_ERROR_JOB = 'REINIT_ERROR_JOB'
+export const RECEIVE_DELETE_JOB_FROM_LIST = 'RECEIVE_DELETE_JOB_FROM_LIST'
+export const RECEIVE_JOB_IN_LIST = 'RECEIVE_JOB_IN_LIST'
 
-export function requestConcept() {
+export function requestJob() {
     return {
-        type: REQUEST_CONCEPT
+        type: REQUEST_JOB
     }
 }
 
-export function receiveConcept(payload) {
+export function receiveJob(payload) {
     return {
-        type: RECEIVE_CONCEPT,
+        type: RECEIVE_JOB,
         payload
     }
 }
 
-export function receiveConcepts(payload) {
+export function receiveJobs(payload) {
     return {
-        type: RECEIVE_CONCEPTS,
+        type: RECEIVE_JOBS,
         payload
     }
 }
 
-export function receiveConceptInList(payload) {
+export function receiveJobInList(payload) {
     return {
-        type: RECEIVE_CONCEPT_IN_LIST,
+        type: RECEIVE_JOB_IN_LIST,
         payload
     }
 }
 
-export function errorConcept(message) {
+export function errorJob(message) {
     return {
-        type: ERROR_CONCEPT,
+        type: ERROR_JOB,
         message
     }
 }
 
-export function deleteConceptFromList(id) {
+export function deleteJobFromList(id) {
     return {
-        type: RECEIVE_DELETE_CONCEPT_FROM_LIST,
+        type: RECEIVE_DELETE_JOB_FROM_LIST,
         id
     }
 }
 
-export function reinitErrorConcept() {
+export function reinitErrorJob() {
     return {
-        type: REINIT_ERROR_CONCEPT
+        type: REINIT_ERROR_JOB
     }
 }
 
 const handleError = (dispatch, message) => {
-    dispatch(errorConcept(message))
+    dispatch(errorJob(message))
     setTimeout(() => {
-        dispatch(reinitErrorConcept())
+        dispatch(reinitErrorJob())
     }, 5000)
 }
 
-export function getConcept(concept_id) {
+export function getJob(concept_id) {
     return async dispatch => {
-        dispatch(requestConcept())
-        const response = await fetch(concept_url + concept_id)
+        dispatch(requestJob())
+        const response = await fetch(job_url + concept_id)
         const json = await response.json()
         if (response.ok) {
             console.log(json)
-            dispatch(receiveConcept(json))
+            dispatch(receiveJob(json))
         }
         else {
             handleError(dispatch, json.message)
@@ -80,13 +80,13 @@ export function getConcept(concept_id) {
     }
 }
 
-export function getConcepts() {
+export function getJobs() {
     return async dispatch => {
-        dispatch(requestConcept())
-        const response = await fetch(concept_url)
+        dispatch(requestJob())
+        const response = await fetch(job_url)
         const json = await response.json()
         if (response.ok) {
-            dispatch(receiveConcepts(json))
+            dispatch(receiveJobs(json))
         }
         else {
             handleError(dispatch, json.message)
@@ -94,7 +94,7 @@ export function getConcepts() {
     }
 }
 
-export function updateConcept(infos, id) {
+export function updateJob(infos, id) {
     let config = {
         method: 'PUT',
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
@@ -104,11 +104,11 @@ export function updateConcept(infos, id) {
     }
 
     return async dispatch => {
-        dispatch(requestConcept())
-        const response = await fetch(concept_url + id, config)
+        dispatch(requestJob())
+        const response = await fetch(job_url + id, config)
         const json = await response.json()
         if (response.ok) {
-            dispatch(receiveConcept(json))
+            dispatch(receiveJob(json))
         }
         else {
             handleError(dispatch, json.message)
@@ -117,7 +117,7 @@ export function updateConcept(infos, id) {
     }
 }
 
-export function deleteConcept(concept_id) {
+export function deleteJob(concept_id) {
     let config = {
         method: 'DELETE',
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
@@ -126,11 +126,11 @@ export function deleteConcept(concept_id) {
     }
 
     return async dispatch => {
-        dispatch(requestConcept())
-        const response = await fetch(concept_url + concept_id, config)
+        dispatch(requestJob())
+        const response = await fetch(job_url + concept_id, config)
         const json = await response.json()
         if (response.ok) {
-            dispatch(deleteConceptFromList(json.id))
+            dispatch(deleteJobFromList(json.id))
         }
         else {
             handleError(dispatch, json.message)
@@ -140,21 +140,21 @@ export function deleteConcept(concept_id) {
     }
 }
 
-export function addConceptToList(infos) {
+export function addJobToList(infos) {
     let config = {
         method: 'POST',
         headers: { 'Content-Type':'application/x-www-form-urlencoded',
         'Authorization': localStorage.getItem('id_token')
         },
-        body: `name=${infos.name}`
+        body: `name=${infos.name}&description=${infos.description}`
     }
 
     return async dispatch => {
-        dispatch(requestConcept())
-        const response = await fetch(concept_url, config)
+        dispatch(requestJob())
+        const response = await fetch(job_url, config)
         const json = await response.json()
         if (response.ok) {
-            dispatch(receiveConceptInList(json))
+            dispatch(receiveJobInList(json))
         }
         else {
             handleError(dispatch, json.message)
@@ -162,4 +162,3 @@ export function addConceptToList(infos) {
         return false
     }
 }
-
