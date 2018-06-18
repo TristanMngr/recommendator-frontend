@@ -6,7 +6,7 @@ export default class ParcoursList extends React.Component {
     render() {
         return(
             <div>
-                {this.props.specialities.map(speciality => <ParcoursTile />)}
+                {/*this.props.specialities.map(speciality => <ParcoursTile />)*/}
             </div>
         )
     }

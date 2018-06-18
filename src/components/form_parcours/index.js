@@ -1,7 +1,7 @@
 import React from 'react'
 import ConceptPicker from '../ui/conceptpicker'
 import {connect} from 'react-redux'
-
+import ParcoursList from './parcours_list'
 class Form1 extends React.Component {
     render() {
         return(

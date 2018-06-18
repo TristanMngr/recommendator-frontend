@@ -1,0 +1,68 @@
+:local(.component) {
+    $green: #4ab55f;
+    $grey:#949494;
+    $padding: 15px;
+    $small-font: 13px;
+    align-self: center;
+    position: relative;
+    display: block;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-left:60px;
+    margin-right:60px;
+    background:#1e2329;
+    padding: $padding;
+
+    .up {
+        display:flex;
+        .name {
+            flex: 1;
+        }
+        .matching {
+            flex: end;
+        }
+    }
+
+    .middle {
+        display:flex;
+        margin-top: $padding;
+        .see-matching {
+            display:inline-flex;
+            flex:8;
+            font-size: $small-font;
+            color: $grey;
+            .button {
+                border: solid 1px $green;
+                padding: 5px;
+                cursor: pointer;
+                color: $green;
+                border-color: $green;
+            }
+            .button:hover {
+                color: green;
+                border-color: green;
+            }
+        }
+    }
+
+    .details {
+        margin-top: 10px;
+        font-size: $small-font;
+        color: $grey;
+    }
+
+    .down {
+        margin-top: $padding;
+        .progress-bar {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        progress::-webkit-progress-value{
+            background: $green;
+        }
+        progress::-webkit-progress-bar {
+            background: $grey;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 
 export default class ParcoursTile extends React.Component {
     render() {
