@@ -1,8 +1,10 @@
 $main_background_color: #2A3346;
 @import "reset";
 @import url('https://fonts.googleapis.com/css?family=Gothic+A1');
-$icons-font-path: '/node_modules/semantic-ui-sass/icons';
-$flags-image-path: '/node_modules/semantic-ui-sass/images';
+//$icons-font-path: '/node_modules/semantic-ui-sass/icons/';
+// $icons-font-path: '../icons';
+$icons-font-path:  "~semantic-ui-sass/icons";
+$flags-image-path: '~semantic-ui-sass/images';
 @import "~semantic-ui-sass/semantic-ui.scss";
 
 body {
