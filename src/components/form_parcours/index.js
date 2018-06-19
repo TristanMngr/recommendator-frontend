@@ -1,14 +1,15 @@
 import React from 'react'
 import ConceptPicker from '../ui/conceptpicker'
 import {connect} from 'react-redux'
+import ParcoursList from './parcours_list'
 
 class Form1 extends React.Component {
     render() {
         return(
-            <div style={{margin: 'auto', width: '90vw'}}>
+            <div>
                 <h1>Découvrez quel parcours est fait pour vous!</h1>
                 <ConceptPicker />
-                <ParcoursList/>
+                <ParcoursList specialities={this.props.specialities}/>
             </div>
         )
     }

@@ -92,7 +92,7 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <Router history={history}>
-                <div className={style.component}>
+                <div className={style.component} >
                     {app}
                 </div>
                 </Router>
