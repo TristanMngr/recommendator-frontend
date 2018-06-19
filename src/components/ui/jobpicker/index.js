@@ -31,7 +31,7 @@ class JobPicker extends React.Component {
     }
 
     componentWillUnmount() {
-        
+
     }
 
     render() {
@@ -42,7 +42,8 @@ class JobPicker extends React.Component {
                 <br/>
                 {jobs}
                 <br/><br/>
-                <Button style={{margin: '0 0 0 1rem'}} loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
+                <Button style={{margin: '0 0 0 1rem'}} onClick={() => this.props.submitForm(this.state.picked)}
+                    loading={this.props.isLoadingForm} disabled={this.state.picked.length <= 0}>Submit</Button>
             </div>
         )
     }
