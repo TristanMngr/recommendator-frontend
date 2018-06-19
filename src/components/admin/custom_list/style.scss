@@ -4,6 +4,12 @@
     $grey: #b3b3b3;
     $link-color: #616e8b;
 
+    .title {
+        padding-top: 10px;
+        padding-bottom: 5px;
+        color: $grey;
+    }
+
     ul {
         background: $background;
     }

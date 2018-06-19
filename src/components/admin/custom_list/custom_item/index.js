@@ -18,15 +18,17 @@ export default class CustomItem extends React.Component {
                         label={"cours coeur"}
                         checked={this.props.isMain} />
                 </div>
-            ) : '';
+            ) : null;
+
 
         return(
             <div className={style.component} >
                     <li>
                         <div className="line">
                             <div className="name">{this.props.name}</div>
-                            <div className="description">{this.props.description}</div>
+                            <div className="description" style={style}>{this.props.description}</div>
                             { toggle }
+                            { this.props.hiddenToggle && <div className="toggle"></div> }
                             <div>
                                 <div className="buttons">
                                     <Link to={this.props.editLink}>Modifier</Link>

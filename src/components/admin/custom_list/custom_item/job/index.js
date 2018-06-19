@@ -22,7 +22,7 @@ class JobItem extends React.Component {
 
         return(
             <CustomItem editLink={link_url} deleteFunction={this.deleteElement.bind(this)} name={this.props.name}
-                description={this.props.description} />
+                description={this.props.description} hiddenToggle />
         )
     }
 }

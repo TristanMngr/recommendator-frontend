@@ -29,8 +29,10 @@ export default class CustomList extends React.Component {
         const JOBS_IN_SPECIALITY = this.props.type === "jobs" && this.props.from === "speciality";
 
         let component;
+        let wording;
 
         if (SPECIALITIES) {
+            wording = "parcours"
             component = this.props.list.sort((first, second) => first.id > second.id)
             .map(
                 (elem, i) => {
@@ -40,6 +42,7 @@ export default class CustomList extends React.Component {
             );
         }
         else if (MODULES) {
+            wording = "cours"
             component = this.props.list.sort((first, second) => first.id > second.id)
             .map(
                 (elem, i) => {
@@ -49,6 +52,7 @@ export default class CustomList extends React.Component {
             );
         }
         else if (MODULES_IN_SPECIALITY) {
+            wording = "cours"
             component = this.props.list.sort((first, second) => first.id > second.id)
             .map(
                 (elem, i) => {
@@ -59,6 +63,7 @@ export default class CustomList extends React.Component {
             );
         }
         else if (CONCEPTS || CONCEPTS_IN_MODULE) {
+            wording = "concepts"
             component = this.props.list.sort((first, second) => first.id > second.id)
             .map(
                 (elem, i) => {
@@ -68,6 +73,7 @@ export default class CustomList extends React.Component {
             );
         }
         else if (JOBS || JOBS_IN_SPECIALITY) {
+            wording = "métiers"
             component = this.props.list.sort((first, second) => first.id > second.id)
             .map(
                 (elem, i) => {
@@ -80,6 +86,7 @@ export default class CustomList extends React.Component {
 
         return(
             <div className={style.component} >
+                <div className="title" >liste des {wording}</div>
                 <ul>
                     {component}
                 </ul>

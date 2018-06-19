@@ -23,8 +23,6 @@ class SpecialityPage extends React.Component {
         let addJobForm = '';
         let component = '';
 
-        //TODO mettre des titres aux listes
-
         if (this.props.speciality){
             putForm =
             <Form method="put" type="specialities" object={this.props.speciality} />
