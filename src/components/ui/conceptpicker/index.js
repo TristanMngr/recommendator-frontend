@@ -45,7 +45,7 @@ class ConceptPicker extends React.Component {
                 <br/>
                 {Component}
                 <br/>
-                <Button onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
+                <Button loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
             </div>
         )
     }
@@ -55,6 +55,7 @@ class ConceptPicker extends React.Component {
 const mapStateToProps = state => {
     return {
         isFetching: state.concepts.isFetching,
+        isLoadingForm: state.form.form1.isFetching,
         concepts: state.concepts.list
     }
 }

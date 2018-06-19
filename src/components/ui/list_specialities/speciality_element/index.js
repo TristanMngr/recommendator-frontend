@@ -17,6 +17,10 @@ export default class SpecialityElement extends React.Component {
         });
     }
 
+    componentDidMount() {
+
+    }
+
     render() {
         let button = null
         if (this.props.matching_modules) {

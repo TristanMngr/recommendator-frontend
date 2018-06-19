@@ -42,7 +42,7 @@ class JobPicker extends React.Component {
                 <br/>
                 {jobs}
                 <br/><br/>
-                <Button onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
+                <Button loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
             </div>
         )
     }
@@ -50,7 +50,8 @@ class JobPicker extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        jobs: state.jobs.list
+        jobs: state.jobs.list,
+        isLoadingForm: state.form.form2.isFetching,
     }
 }
 
