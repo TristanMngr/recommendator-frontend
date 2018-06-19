@@ -10,10 +10,10 @@ class FormJob extends React.Component {
         return(
             <div style={{display: 'flex'}}>
                 <Menu />
-                <div className={style.component}>
+                <div className={style.component + " margin-menu"}>
                     <h1>Découvrez quels parcours correspondent aux métiers de vos choix!</h1>
                     <JobPicker />
-                    <div style={{height: 50}} /> 
+                    <div style={{height: 50}} />
                     <ListSpecialities specialities={this.props.specialities}/>
                 </div>
             </div>

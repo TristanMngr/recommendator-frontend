@@ -10,10 +10,10 @@ class Form1 extends React.Component {
         return(
             <div style={{display: 'flex'}}>
                 <Menu />
-                <div className={style.component}>
+                <div className={style.component + " margin-menu"}>
                     <h1>Découvrez quel parcours est fait pour vous!</h1>
                     <ConceptPicker />
-                    <div style={{height: 50}} /> 
+                    <div style={{height: 50}} />
                     <ListSpecialities specialities={this.props.specialities}/>
                 </div>
             </div>

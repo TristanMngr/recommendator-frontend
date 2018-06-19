@@ -4,7 +4,7 @@ $main_background_color: #2A3346;
 $icons-font-path: '/node_modules/semantic-ui-sass/icons';
 $flags-image-path: '/node_modules/semantic-ui-sass/images';
 @import "~semantic-ui-sass/semantic-ui.scss";
- 
+
 body {
     background-color: $main_background_color;
 }
@@ -54,4 +54,8 @@ body {
     height: 0;
     display: none;
     position: fixed;
+}
+
+.margin-menu {
+    margin-left: 15rem;
 }
