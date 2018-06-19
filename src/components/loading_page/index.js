@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import LogoutButton from '../ui/logout_button'
 import { Loader } from 'semantic-ui-react'
 
 

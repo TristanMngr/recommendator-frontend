@@ -8,14 +8,14 @@ import CustomItem from '../'
 class ModuleItem extends React.Component {
     constructor(props) {
         super(props);
-        if (this.props.isMain != undefined)
+        if (this.props.isMain !== undefined)
             this.state = {
                 is_main: this.props.isMain
             }
     }
 
     deleteElement(){
-        if (this.props.isMain != undefined)
+        if (this.props.isMain !== undefined)
             this.props.delFromSpeciality(this.props.speciality.id, this.props.id);
         else
             this.props.del(this.props.id);
@@ -32,7 +32,7 @@ class ModuleItem extends React.Component {
     render() {
         const link_url = `/admin/module/${this.props.id}`
 
-        const component = this.props.isMain != undefined ?
+        const component = this.props.isMain !== undefined ?
             // it's on the speciality page, so we need to show the toggle and switch the is_main props
             <CustomItem editLink={link_url} deleteFunction={this.deleteElement.bind(this)} name={this.props.name}
                 description={this.props.description} switchIsMain={this.switchIsMain.bind(this)} isMain={this.state.is_main} />

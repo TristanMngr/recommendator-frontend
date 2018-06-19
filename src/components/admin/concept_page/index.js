@@ -18,7 +18,6 @@ class ConceptPage extends React.Component {
     render() {
 
         let putForm = '';
-        let addForm = '';
         let component = '';
 
         if (this.props.concept){

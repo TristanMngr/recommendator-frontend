@@ -1,7 +1,6 @@
 import React from 'react'
-import { Grid, Menu, Icon } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import style from './style.scss'
 
 export default class MenuVert extends React.Component {
 

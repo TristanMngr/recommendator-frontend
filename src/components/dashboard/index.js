@@ -1,15 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import LogoutButton from '../ui/logout_button'
-import CustomList from '../admin/custom_list'
 import style from './style.scss'
 import DashboardTile from './dashboard_tile'
 import Menu from '../ui/menu'
+
 class Dashboard extends React.Component {
     render() {
         const adminRoute = this.props.admin ? (<DashboardTile to="/admin" title="Administrer le site" />) : null
-        const list = this.props.specialities ? this.props.specialities : []
+        //const list = this.props.specialities ? this.props.specialities : []
         return(
             <div style={{display: 'flex'}}>
                 <Menu />

@@ -1,5 +1,4 @@
 import React from 'react'
-import PutForm from './put_form'
 import SpecialityPostForm from './post_form/speciality'
 import ModulePostForm from './post_form/module'
 import ConceptPostForm from './post_form/concept'

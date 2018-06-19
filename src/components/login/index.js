@@ -5,7 +5,7 @@ import user_icon from './user.svg'
 import password_icon from './lock.svg'
 import { loginUser } from '../../actions/login';
 import { connect } from 'react-redux'
-import history from '../../history'
+// import history from '../../history'
 import {withRouter, Redirect} from 'react-router-dom'
 
 class Login extends React.Component {
@@ -30,7 +30,7 @@ class Login extends React.Component {
         e.preventDefault()
         this.props.auth({username: this.state.email, password: this.state.password})
     }
-    
+
     render() {
         const error = this.props.error ? <div>{this.props.error}</div> : ""
         const loader_div = (

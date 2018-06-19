@@ -1,10 +1,7 @@
 import React from 'react'
 import style from '../style.scss'
 import FontAwesome from 'react-fontawesome'
-import { deleteSpeciality, deleteModuleFromSpeciality, updateMainModuleFromSpeciality } from '../../../../actions/speciality';
-import { deleteModule } from '../../../../actions/module';
-import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Checkbox } from 'semantic-ui-react'
 
 export default class CustomItem extends React.Component {

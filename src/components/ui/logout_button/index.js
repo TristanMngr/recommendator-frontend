@@ -1,7 +1,7 @@
 import React from 'react'
 import { logoutUser } from '../../../actions/login'
 import { connect } from 'react-redux'
-import {withRouter, Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {Button} from 'semantic-ui-react'
 
 class LogoutButton extends React.Component {
