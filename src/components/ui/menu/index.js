@@ -23,7 +23,7 @@ export default class MenuVert extends React.Component {
                             <Link to="/dashboard">
                             <Menu.Item name='dashboard' active={activeItem === 'dashboard'} onClick={this.handleItemClick} >
                                 Dashboard
-                                <Icon name='dropdown'/>
+                                <Icon name='dashboard'/>
                             </Menu.Item>
                             </Link>
                             <Link to="/profil">
