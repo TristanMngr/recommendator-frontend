@@ -14,6 +14,7 @@ export const RECEIVE_ADD_MODULE_TO_SPECIALITY = 'RECEIVE_ADD_MODULE_TO_SPECIALIT
 export const RECEIVE_ADD_JOB_TO_SPECIALITY = 'RECEIVE_ADD_JOB_TO_SPECIALITY'
 export const RECEIVE_DELETE_SPECIALITY_FROM_LIST = 'RECEIVE_DELETE_SPECIALITY_FROM_LIST'
 export const REINIT_ERROR_SPECIALITY = 'REINIT_ERROR_SPECIALITY'
+export const CLEAR_CURRENT_SPECIALITIES = 'CLEAR_CURRENT_SPECIALITIES'
 
 export function requestSpeciality() {
     return {
@@ -87,6 +88,13 @@ export function receiveDeleteJobFromSpeciality(payload) {
 export function reinitErrorSpeciality(){
     return {
         type: REINIT_ERROR_SPECIALITY
+    }
+}
+
+
+export function clearCurrentSpecialities() {
+    return {
+        type: CLEAR_CURRENT_SPECIALITIES
     }
 }
 

@@ -1,20 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Concept from './concept'
-import {getConcepts} from '../../../actions/concept'
+import {getJobs} from '../../../actions/job'
 import {clearCurrentSpecialities} from '../../../actions/speciality'
+import {getForm2Responses} from '../../../actions/form'
 import {Button} from 'semantic-ui-react'
-import {getForm1Responses} from '../../../actions/form'
-import Loader from './../loader'
 
-class ConceptPicker extends React.Component {
+import Job from '../conceptpicker/concept'
 
+
+class JobPicker extends React.Component {
     constructor(props) {
         super(props)
         this.props.clearCurrentSpecialities()
-        this.props.getConcepts()
+        this.props.getJobs()
         this.state = {picked: []}
     }
+
     updatePicked(id) {
         console.log(this.state.picked)
         if (this.state.picked.includes(id)) {
@@ -28,47 +29,39 @@ class ConceptPicker extends React.Component {
             this.setState({picked: new_picked })
         }
     }
+
     componentWillUnmount() {
         
     }
+
     render() {
-        const LoaderComponent = <Loader/>
-        const ConceptDiv = (
-            <div className="container">
-                {this.props.concepts ? this.props.concepts.map(concept => <Concept id={concept.id} key={concept.id} text={concept.name} callback={(id) => this.updatePicked(id)}/>) : ""}
-            </div>
-        )
-        const Component = this.props.isFetching ? LoaderComponent : ConceptDiv
+    const jobs = this.props.jobs ? this.props.jobs.map((job, i) => <Job key={i} id={job.id} text={job.name} callback={(id) => this.updatePicked(id)}/>) : null
         return(
             <div>
-                <h4>Veuillez choisir les concepts qui vous intéresse dans la liste</h4>
+                <h4>Veuillez choisir les métiers qui vous intéresse dans la liste</h4>
                 <br/>
-                {Component}
-                <br/>
+                {jobs}
+                <br/><br/>
                 <Button onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
             </div>
         )
     }
 }
 
-
 const mapStateToProps = state => {
     return {
-        isFetching: state.concepts.isFetching,
-        concepts: state.concepts.list
+        jobs: state.jobs.list
     }
 }
 
-const mapDispatchToProps = dispatch =>  {
+const mapDispatchToProps = dispatch => {
     return {
-        getConcepts: () => {
-            dispatch(getConcepts())
-        },
+        getJobs: () => dispatch(getJobs()),
         submitForm: (ids) => {
-            dispatch(getForm1Responses(ids))
+            dispatch(getForm2Responses(ids))
         },
         clearCurrentSpecialities: () => dispatch(clearCurrentSpecialities())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConceptPicker)
+export default connect(mapStateToProps, mapDispatchToProps)(JobPicker)

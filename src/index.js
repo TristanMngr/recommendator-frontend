@@ -20,8 +20,9 @@ import AdminRoute from './adminroutes'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
 import { getUser } from './actions/login'
 import FormParcours from './components/form_parcours'
+import FormJob from './components/form_job'
 import Error404 from './components/404'
-import Test from './test'
+import Menu from './components/ui/menu'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
@@ -31,6 +32,7 @@ const DiscoverForm = ({match, location}) => {
     <div>
         <Switch location={location}>
             <Route path={`${match.url}/parcours`} component={FormParcours} />
+            <Route path={`${match.url}/jobs`} component={FormJob} />
             <Route component={Error404} />
         </Switch>
     </div>)
@@ -81,7 +83,6 @@ class App extends React.Component {
                                 <AdminRoute path="/admin/module/:id" component={ModulePage}/>
                                 <AdminRoute path="/admin/concept/:id" component={ConceptPage}/>
                                 <AdminRoute path="/admin/job/:id" component={JobPage}/>
-                                <Route path="/test_page" component={Test}/>
                                 <Route component={Error404} />
                         </Switch>
                     </CSSTransition>

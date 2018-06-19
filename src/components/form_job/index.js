@@ -1,18 +1,18 @@
 import React from 'react'
-import ConceptPicker from '../ui/conceptpicker'
-import {connect} from 'react-redux'
-import ListSpecialities from '../ui/list_specialities'
 import style from './style.scss'
+import JobPicker from '../ui/jobpicker';
+import ListSpecialities from '../ui/list_specialities'
+import {connect} from 'react-redux'
 import Menu from '../ui/menu'
 
-class Form1 extends React.Component {
+class FormJob extends React.Component {
     render() {
         return(
             <div style={{display: 'flex'}}>
                 <Menu />
                 <div className={style.component}>
-                    <h1>Découvrez quel parcours est fait pour vous!</h1>
-                    <ConceptPicker />
+                    <h1>Découvrez quels parcours correspondent aux métiers de vos choix!</h1>
+                    <JobPicker />
                     <div style={{height: 50}} /> 
                     <ListSpecialities specialities={this.props.specialities}/>
                 </div>
@@ -27,4 +27,4 @@ const MapStateToProps = state =>  {
     }
 }
 
-export default connect(MapStateToProps, )(Form1)
+export default connect(MapStateToProps, null)(FormJob)

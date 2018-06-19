@@ -13,10 +13,8 @@ export default class MenuVert extends React.Component {
         const { activeItem } = this.state
 
         return (
-            <Grid>
-                <Grid.Column width={3}>
-                    <Menu inverted vertical>
-                        <div className="color">
+            <div style={{minHeight: '100vh'}}>
+                    <Menu inverted vertical style={{minHeight: '100vh', paddingTop: '50px'}}>
                             <Link to="/dashboard">
                             <Menu.Item name='dashboard' active={activeItem === 'dashboard'} onClick={this.handleItemClick} >
                                 Dashboard
@@ -35,11 +33,8 @@ export default class MenuVert extends React.Component {
                                 <Icon name='info'/>
                             </Menu.Item>
                             </Link>
-                        </div>
-
                     </Menu>
-                </Grid.Column>
-            </Grid>
+            </div>
         )
     }
 }
