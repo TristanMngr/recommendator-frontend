@@ -16,10 +16,10 @@ class ConceptPicker extends React.Component {
         this.state = {picked: []}
     }
     updatePicked(id) {
-        console.log(this.state.picked)
         if (this.state.picked.includes(id)) {
             let new_picked = this.state.picked
-            const index_id = new_picked.splice(index_id, 1)
+            const index_id = new_picked.indexOf(id)
+            new_picked.splice(index_id, 1)
             this.setState({picked: new_picked})
         }
         else {
