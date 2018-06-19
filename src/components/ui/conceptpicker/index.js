@@ -41,7 +41,7 @@ class ConceptPicker extends React.Component {
         const Component = this.props.isFetching ? LoaderComponent : ConceptDiv
         return(
             <div>
-                <h4>Veuillez choisir les concepts qui vous intéresse dans la liste</h4>
+                <h4>Veuillez choisir les concepts qui vous intéressent dans la liste</h4>
                 <br/>
                 {Component}
                 <br/>

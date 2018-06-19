@@ -38,7 +38,7 @@ class JobPicker extends React.Component {
     const jobs = this.props.jobs ? this.props.jobs.map((job, i) => <Job key={i} id={job.id} text={job.name} callback={(id) => this.updatePicked(id)}/>) : null
         return(
             <div>
-                <h4>Veuillez choisir les métiers qui vous intéresse dans la liste</h4>
+                <h4>Veuillez choisir les métiers qui vous intéressent dans la liste</h4>
                 <br/>
                 {jobs}
                 <br/><br/>
