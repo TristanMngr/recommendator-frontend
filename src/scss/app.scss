@@ -16,28 +16,42 @@ body {
     margin: auto;
     font-family: "Gothic A1", sans-serif;
     @import "override_semantic";
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 
 .fade-enter {
     opacity: 0;
+    top: 0;
+    left: 0;
     position: absolute;
     transition: all 0.3s ease-out;
 }
 
 .fade-enter-active {
     opacity: 1;
-    position: absolute;
+    top: 0;
+    left: 0;
+    position: fixed;
 }
 
 .fade-exit {
     opacity: 1;
-    position: absolute;
+    top: 0;
+    left: 0;
+    position: fixed;
     display: none;
+    width: 0;
+    height: 0;
 }
 
 .fade-exit-active {
     opacity: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
     display: none;
-    position: absolute;
+    position: fixed;
 }

@@ -24,6 +24,7 @@
     .middle {
         display:flex;
         margin-top: $padding;
+        margin-bottom: $padding;
         .see-matching {
             display:inline-flex;
             flex:8;
@@ -51,16 +52,6 @@
 
     .down {
         margin-top: $padding;
-        .progress-bar {
-            width: 100%;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        progress::-webkit-progress-value{
-            background: $green;
-        }
-        progress::-webkit-progress-bar {
-            background: $grey;
-        }
+        
     }
 }

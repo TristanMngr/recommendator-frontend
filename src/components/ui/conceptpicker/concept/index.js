@@ -14,7 +14,7 @@ export default class Concept extends React.Component {
     render() {
         const className = this.state.active ? `${style.component} active` : `${style.component}`
         return (
-        <Button className={className} onClick={() => this.switch()}>{this.props.text}</Button>
+        <Button style={{margin: '1em 0.25em 0em 1em'}}className={className} onClick={() => this.switch()}>{this.props.text}</Button>
         )   
     }
 }

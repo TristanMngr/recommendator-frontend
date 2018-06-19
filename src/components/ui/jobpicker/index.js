@@ -42,7 +42,7 @@ class JobPicker extends React.Component {
                 <br/>
                 {jobs}
                 <br/><br/>
-                <Button loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
+                <Button style={{margin: '0 0 0 1rem'}} loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
             </div>
         )
     }

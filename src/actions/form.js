@@ -1,5 +1,6 @@
 import config from '../config'
 import {receiveSpecialities} from '../actions/speciality'
+import {clearCurrentSpecialities} from '../actions/speciality'
 const form1_url = `${config.api_url}/forms/specialities/concepts?`
 const form2_url = `${config.api_url}/forms/specialities/jobs?`
 
@@ -45,6 +46,7 @@ export function getForm1Responses(ids) {
         }
     }
     return async dispatch => {
+        dispatch(clearCurrentSpecialities())
         dispatch(requestForm1())
         const response = await fetch(form1_url + `concept_ids=${ids}`, config)
         const json = await response.json()
@@ -66,6 +68,7 @@ export function getForm2Responses(ids) {
         }
     }
     return async dispatch => {
+        dispatch(clearCurrentSpecialities())
         dispatch(requestForm2())
         const response = await fetch(form2_url + `job_ids=${ids}`, config)
         const json = await response.json()

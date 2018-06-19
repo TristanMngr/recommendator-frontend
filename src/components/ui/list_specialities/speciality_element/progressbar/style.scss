@@ -1,0 +1,13 @@
+:local(.component) {
+        $green: #4ab55f;
+        $grey:#949494;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 10px;
+        .progress {
+            height: 10px;
+            background-color: $green;
+            transition: all 0.3s ease-out;
+        }
+}

@@ -45,7 +45,7 @@ class ConceptPicker extends React.Component {
                 <br/>
                 {Component}
                 <br/>
-                <Button loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
+                <Button style={{margin: '0 0 0 1rem'}} loading={this.props.isLoadingForm} onClick={() => this.props.submitForm(this.state.picked)}>Submit</Button>
             </div>
         )
     }

@@ -2,23 +2,23 @@ import React from 'react'
 import style from './style.scss'
 import ListModules from './list_modules'
 import ListJobs from './list_jobs'
+import ProgressBar from './progressbar'
 
 export default class SpecialityElement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show_details: false
+            show_details: false,
         }
     }
 
     toggle(){
         this.setState({
-            show_details: !this.state.show_details
+            show_details: !this.state.show_details,
         });
     }
 
     componentDidMount() {
-
     }
 
     render() {
@@ -77,7 +77,7 @@ export default class SpecialityElement extends React.Component {
                 </div>
                 {details}
                 <div className="down">
-                    <progress className="progress-bar" value={this.props.matching} max="100"></progress>
+                    <ProgressBar value={this.props.matching} />
                 </div>
             </div>
         )
