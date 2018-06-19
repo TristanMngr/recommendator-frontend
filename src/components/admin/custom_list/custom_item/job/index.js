@@ -4,7 +4,6 @@ import { deleteJobFromSpeciality } from '../../../../../actions/speciality';
 import { connect } from 'react-redux'
 import CustomItem from '../'
 
-// TODO recentrer la description (quand on voit la liste dans /speciality/:id)
 class JobItem extends React.Component {
     constructor(props) {
         super(props);
