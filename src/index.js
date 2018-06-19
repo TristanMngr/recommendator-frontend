@@ -23,6 +23,8 @@ import FormParcours from './components/form_parcours'
 import FormJob from './components/form_job'
 import Error404 from './components/404'
 import Menu from './components/ui/menu'
+import FAQ from './components/FAQ'
+import Profile from './components/profil'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(Reducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
@@ -76,8 +78,10 @@ class App extends React.Component {
                     <CSSTransition key={location.pathname.split('/')[1]} classNames="fade" timeout={1000}>
                         <Switch location={location}>
                                 <Route exact path="/" component={Login} />
+                                <Route path="/faq" component={FAQ} />
                                 <PrivateRoute path="/dashboard" component={Dashboard}/>
                                 <PrivateRoute path="/discover/" component={DiscoverForm}/>
+                                <PrivateRoute path="/profil" component={Profile} />
                                 <AdminRoute exact path="/admin" component={Admin}/>
                                 <AdminRoute path="/admin/speciality/:id" component={SpecialityPage}/>
                                 <AdminRoute path="/admin/module/:id" component={ModulePage}/>

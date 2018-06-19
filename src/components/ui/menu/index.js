@@ -27,7 +27,7 @@ export default class MenuVert extends React.Component {
                                 <Icon name='user circle'/>
                             </Menu.Item>
                             </Link>
-                            <Link to="/FAQ">
+                            <Link to="/faq">
                             <Menu.Item name='info' active={activeItem === 'info'} onClick={this.handleItemClick}>
                                 FAQ
                                 <Icon name='info'/>
