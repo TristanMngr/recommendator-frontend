@@ -1,10 +1,10 @@
 import React from 'react'
-import { Menu, Icon } from 'semantic-ui-react'
+import { Menu, Icon, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class MenuVert extends React.Component {
 
-    state = { activeItem: 'user circle' }
+    state = { activeItem: 'user circle'}
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -14,10 +14,15 @@ export default class MenuVert extends React.Component {
         return (
             <div style={{minHeight: '100vh', position: 'fixed'}}>
                     <Menu inverted vertical style={{minHeight: '100vh', paddingTop: '50px'}}>
+                            <Header as='h4' color="green" icon textAlign='center'>
+                                <Header.Content>THE RECOMMENDATOR</Header.Content>
+                            </Header>
+                            <br/>
+                            <br/>
                             <Link to="/dashboard">
                             <Menu.Item name='dashboard' active={activeItem === 'dashboard'} onClick={this.handleItemClick} >
                                 Dashboard
-                                <Icon name='dropdown'/>
+                                <Icon name='dashboard'/>
                             </Menu.Item>
                             </Link>
                             <Link to="/profil">
