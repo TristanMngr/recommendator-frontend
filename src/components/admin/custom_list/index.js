@@ -84,12 +84,18 @@ export default class CustomList extends React.Component {
 
         }
 
+        const list = this.props.list && this.props.list.length > 0 ?
+            (<ul>
+                {component}
+            </ul>) :
+            (
+                <div style={{paddingLeft: "50px"}}>{`aucun ${wording} actuellement`}</div>
+            )
+
         return(
             <div className={style.component} >
                 <div className="title" >liste des {wording}</div>
-                <ul>
-                    {component}
-                </ul>
+                {list}
             </div>
         )
     }

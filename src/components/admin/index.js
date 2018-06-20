@@ -9,6 +9,7 @@ import {withRouter} from 'react-router-dom'
 import CustomList  from './custom_list'
 import Form from './form'
 import BigButton from './big_button'
+import Menu from '../ui/menu'
 
 class Admin extends React.Component {
     constructor(props) {
@@ -65,32 +66,35 @@ class Admin extends React.Component {
         const form_jobs = <Form method="post" type="jobs" />
 
         return(
-            <div className={style.component}>
-                <div>
-                    <div className="add">
-                        <BigButton text="Ajouter un parcours" hidden={form_specialities} />
+            <React.Fragment>
+                <Menu />
+                <div className={style.component + " margin-menu"}>
+                    <div>
+                        <div className="add">
+                            <BigButton text="Ajouter un parcours" hidden={form_specialities} />
+                        </div>
+                        {this.props.specialities && list_specialities}
                     </div>
-                    {this.props.specialities && list_specialities}
-                </div>
-                <div>
-                    <div className="add">
-                        <BigButton text="Ajouter un cours" hidden={form_modules} />
+                    <div>
+                        <div className="add">
+                            <BigButton text="Ajouter un cours" hidden={form_modules} />
+                        </div>
+                        {this.props.modules && list_modules}
                     </div>
-                    {this.props.modules && list_modules}
-                </div>
-                <div>
-                    <div className="add">
-                        <BigButton text="Ajouter un concept" hidden={form_concepts} />
+                    <div>
+                        <div className="add">
+                            <BigButton text="Ajouter un concept" hidden={form_concepts} />
+                        </div>
+                        {this.props.concepts && list_concepts}
                     </div>
-                    {this.props.concepts && list_concepts}
-                </div>
-                <div>
-                    <div className="add">
-                        <BigButton text="Ajouter un métier" hidden={form_jobs} />
+                    <div>
+                        <div className="add">
+                            <BigButton text="Ajouter un métier" hidden={form_jobs} />
+                        </div>
+                        {this.props.jobs && list_jobs}
                     </div>
-                    {this.props.jobs && list_jobs}
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
