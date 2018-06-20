@@ -6,6 +6,8 @@ import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
 import Form from '../form'
 import CustomList from '../custom_list'
+import HomeButton from '../home_button'
+import Menu from '../../ui/menu'
 
 class JobPage extends React.Component {
     constructor(props) {
@@ -29,9 +31,7 @@ class JobPage extends React.Component {
             component = (
                 <div>
                     <h1>{this.props.job.name}</h1>
-
-                    <CustomList type="concepts" list={this.props.job.concepts}
-                        from="job" />
+                    <HomeButton />
 
                     <div className="actions">
                         <BigButton text="Modifier les informations du métier" hidden={putForm} />
@@ -42,9 +42,12 @@ class JobPage extends React.Component {
         }
 
         return(
-            <div className={style.component}>
-                {component}
-            </div>
+            <React.Fragment>
+                <Menu />
+                <div className={style.component + " margin-menu"}>
+                    {component}
+                </div>
+            </React.Fragment>
         )
     }
 }

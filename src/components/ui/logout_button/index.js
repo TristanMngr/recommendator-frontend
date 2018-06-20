@@ -3,6 +3,7 @@ import { logoutUser } from '../../../actions/login'
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {Button} from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 class LogoutButton extends React.Component {
 
@@ -16,7 +17,7 @@ class LogoutButton extends React.Component {
 
     render() {
         return (
-            <Button content="Logout" onClick={this.logOut.bind(this)} />
+            <div className="logout-menu" onClick={this.logOut.bind(this)}>déconnexion <Icon name='undo' className="logout-icon" /></div>
         )
     }
 }

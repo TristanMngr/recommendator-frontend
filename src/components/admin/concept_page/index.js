@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
 import Form from '../form'
+import HomeButton from '../home_button'
+import Menu from '../../ui/menu'
 
 class ConceptPage extends React.Component {
     constructor(props) {
@@ -27,6 +29,7 @@ class ConceptPage extends React.Component {
             component = (
                 <div>
                     <h1>{this.props.concept.name}</h1>
+                    <HomeButton />
 
                     <div className="actions">
                         <BigButton text="Modifier les informations du concept" hidden={putForm} />
@@ -37,9 +40,12 @@ class ConceptPage extends React.Component {
         }
 
         return(
-            <div className={style.component}>
-                {component}
-            </div>
+            <React.Fragment>
+                <Menu />
+                <div className={style.component + " margin-menu"}>
+                    {component}
+                </div>
+            </React.Fragment>
         )
     }
 }

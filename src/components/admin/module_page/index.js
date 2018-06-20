@@ -6,6 +6,8 @@ import {withRouter} from 'react-router-dom'
 import BigButton from '../big_button'
 import Form from '../form'
 import CustomList from '../custom_list'
+import HomeButton from '../home_button'
+import Menu from '../../ui/menu'
 
 class ModulePage extends React.Component {
     constructor(props) {
@@ -33,6 +35,7 @@ class ModulePage extends React.Component {
             component = (
                 <div>
                     <h1>{this.props.module.name}</h1>
+                    <HomeButton />
 
                     <CustomList type="concepts" list={this.props.module.concepts}
                         from="module" />
@@ -47,9 +50,12 @@ class ModulePage extends React.Component {
         }
 
         return(
-            <div className={style.component}>
-                {component}
-            </div>
+            <React.Fragment>
+                <Menu />
+                <div className={style.component + " margin-menu"}>
+                    {component}
+                </div>
+            </React.Fragment>
         )
     }
 }
