@@ -17,24 +17,24 @@ export default class MenuVert extends React.Component {
                             <br/>
                             <br/>
                             <Link to="/dashboard">
-                                <Menu.Item name='dashboard' active={path === "/dashboard"} >
+                                <Menu.Item name='dashboard' active={path === "/dashboard"} className="menu-item" >
                                     Dashboard
                                     <Icon name='dashboard'/>
                                 </Menu.Item>
                             </Link>
                             <Link to="/profil">
-                                <Menu.Item name='user circle' active={path === '/profil'}>
+                                <Menu.Item name='user circle' active={path === '/profil'} className="menu-item" >
                                     Profil
                                     <Icon name='user circle'/>
                                 </Menu.Item>
                             </Link>
                             <Link to="/faq">
-                                <Menu.Item name='info' active={path === '/faq'}>
+                                <Menu.Item name='info' active={path === '/faq'} className="menu-item" >
                                     FAQ
                                     <Icon name='info'/>
                                 </Menu.Item>
                             </Link>
-                            <Menu.Item name="logout" className="logout-menu" >
+                            <Menu.Item name="logout" className="logout-menu">
                                     <LogoutButton />
                             </Menu.Item>
                     </Menu>

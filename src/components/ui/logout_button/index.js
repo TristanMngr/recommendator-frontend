@@ -17,7 +17,7 @@ class LogoutButton extends React.Component {
 
     render() {
         return (
-            <div className="logout-menu" onClick={this.logOut.bind(this)}>deconnexion <Icon name='undo' className="logout-icon" /></div>
+            <div className="logout-menu" onClick={this.logOut.bind(this)}>déconnexion <Icon name='undo' className="logout-icon" /></div>
         )
     }
 }
