@@ -9,3 +9,17 @@
   font-family: Hiragino Sans GB;
   height: 1100px;
 }
+
+.logout-menu {
+    cursor:pointer;
+}
+
+.logout-menu:hover {
+    color: #b3b3b3;
+}
+
+.logout-icon {
+    width: 1.18em;
+    float: right;
+    margin: 0em 0em 0em 0.5em !important;
+}

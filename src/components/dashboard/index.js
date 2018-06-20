@@ -18,7 +18,6 @@ class Dashboard extends React.Component {
                     <DashboardTile to="/discover/parcours" title="Découvrez quel parcours est fait pour vous!" />
                     <DashboardTile to="/discover/jobs" title="Découvrez quels parcours correspondent aux métiers de vos choix!" />
                     {adminRoute}
-                    <LogoutButton />
                 </div>
             </div>
         )
