@@ -7,7 +7,8 @@
         height: 10px;
         .progress {
             height: 10px;
-            background-color: $green;
+            //background-color: $green;
+            background: -webkit-linear-gradient(left, #316536 0%,#4ab55f 100%);
             transition: all 0.3s ease-out;
         }
 }
